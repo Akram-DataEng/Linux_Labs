@@ -1,0 +1,535 @@
+[student@localhost ~]$ ls
+ Admin       Downloads   Music      Public        System          user_list.txt
+ Desktop     first.txt   Nti_file   quiz1.eval2  'System Admin'   Videos
+ Documents   Links       Pictures   quiz2.eval2   Templates
+[student@localhost ~]$ echo Dispaly the file content > Nti_file
+[student@localhost ~]$ cat Nti_file
+Dispaly the file content
+[student@localhost ~]$ touch nti_file2
+[student@localhost ~]$ echo reads files and display the text one screen at a time > nti_file2
+[student@localhost ~]$ cat nti_file2
+reads files and display the text one screen at a time
+[student@localhost ~]$ more nti_file2
+reads files and display the text one screen at a time
+[student@localhost ~]$ ls
+ Admin       first.txt   nti_file2     quiz2.eval2     user_list.txt
+ Desktop     Links       Pictures      System          Videos
+ Documents   Music       Public       'System Admin'
+ Downloads   Nti_file    quiz1.eval2   Templates
+[student@localhost ~]$ man rm
+[student@localhost ~]$ mkdir testdir_nti
+[student@localhost ~]$ touch testfilerm
+[student@localhost ~]$ touch testdir_nti/file1
+[student@localhost ~]$ ls
+ Admin       first.txt   nti_file2     quiz2.eval2     testdir_nti
+ Desktop     Links       Pictures      System          testfilerm
+ Documents   Music       Public       'System Admin'   user_list.txt
+ Downloads   Nti_file    quiz1.eval2   Templates       Videos
+[student@localhost ~]$ cat testdir_nti
+cat: testdir_nti: Is a directory
+[student@localhost ~]$ cd /testdir_nti
+bash: cd: /testdir_nti: No such file or directory
+[student@localhost ~]$ cd /testfilerm
+bash: cd: /testfilerm: No such file or directory
+[student@localhost ~]$ rmdir testdir_nti
+rmdir: failed to remove 'testdir_nti': Directory not empty
+[student@localhost ~]$ ls
+ Admin       first.txt   nti_file2     quiz2.eval2     testdir_nti
+ Desktop     Links       Pictures      System          testfilerm
+ Documents   Music       Public       'System Admin'   user_list.txt
+ Downloads   Nti_file    quiz1.eval2   Templates       Videos
+[student@localhost ~]$ rm -r testdir_nti
+[student@localhost ~]$ ls
+ Admin       first.txt   nti_file2     quiz2.eval2     testfilerm
+ Desktop     Links       Pictures      System          user_list.txt
+ Documents   Music       Public       'System Admin'   Videos
+ Downloads   Nti_file    quiz1.eval2   Templates
+[student@localhost ~]$ mkdir emptydir
+[student@localhost ~]$ rmdir emptydir
+[student@localhost ~]$ mkdir emptydir
+[student@localhost ~]$ ls
+ Admin       emptydir    Nti_file    quiz1.eval2     Templates
+ Desktop     first.txt   nti_file2   quiz2.eval2     testfilerm
+ Documents   Links       Pictures    System          user_list.txt
+ Downloads   Music       Public     'System Admin'   Videos
+[student@localhost ~]$ rmdir emptydir
+[student@localhost ~]$ ls
+ Admin       first.txt   nti_file2     quiz2.eval2     testfilerm
+ Desktop     Links       Pictures      System          user_list.txt
+ Documents   Music       Public       'System Admin'   Videos
+ Downloads   Nti_file    quiz1.eval2   Templates
+[student@localhost ~]$ echo rm=remove files or directories even if they are not empty                                                                           rmdir= remove empty director only > testfilerm                
+[student@localhost ~]$ cat testfilerm
+rm=remove files or directories even if they are not empty rmdir= remove empty director only
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ cd ~
+[student@localhost ~]$ mk
+
+
+
+
+bash: mk: command not found...
+
+
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ nano file
+[student@localhost ~]$ cat file_diffination
+cat: display the file content
+more: reads files and display the text one screen at a time 
+rm : removes files or non-empty directories with -r
+rmdir only removes empty directories
+
+
+[student@localhost ~]$ mkdir -p dir1/dir11
+[student@localhost ~]$ mkdir dir1/dir12
+[student@localhost ~]$ mkdir -p docs
+[student@localhost ~]$ touch dir1/dir11/file1
+[student@localhost ~]$ touch docs/mycv
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ ls -R dir1 
+dir1:
+dir11  dir12
+
+dir1/dir11:
+file1
+
+dir1/dir12:
+[student@localhost ~]$ ls -R docs
+docs:
+mycv
+[student@localhost ~]$ 
+[student@localhost ~]$ rmdir dir1/dir11
+rmdir: failed to remove 'dir1/dir11': Directory not empty
+[student@localhost ~]$ rm dir1/dir11/file1
+[student@localhost ~]$ rmdir dir1/dir11
+[student@localhost ~]$ 
+[student@localhost ~]$ ls -R dir1
+dir1:
+dir12
+
+dir1/dir12:
+[student@localhost ~]$ 
+[student@localhost ~]$ rmdir -p dir1/dir12
+[student@localhost ~]$ ls -R dir1
+ls: cannot access 'dir1': No such file or directory
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ pwd
+/home/student
+[student@localhost ~]$ /home/student/docs/mycv
+bash: /home/student/docs/mycv: Permission denied
+[student@localhost ~]$ ls -R docs
+docs:
+mycv
+[student@localhost ~]$ docs/mycv
+bash: docs/mycv: Permission denied
+[student@localhost ~]$ cat docs/mycv
+[student@localhost ~]$ ls docs/mycv
+docs/mycv
+[student@localhost ~]$ ls -l docs
+total 0
+-rw-rw-r--. 1 student student 0 Apr  5 09:00 mycv
+[student@localhost ~]$ sudo /home/student/docs/mycv
+[sudo] password for student: 
+sudo: /home/student/docs/mycv: command not found
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ cp /etc/passwd ~/mypasswd
+[student@localhost ~]$ ls ~ | grep mypasswd
+mypasswd
+[student@localhost ~]$ cat ~/mypasswd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+polkitd:x:998:996:User for polkitd:/:/sbin/nologin
+tss:x:59:59:Account used for TPM access:/dev/null:/sbin/nologin
+avahi:x:70:70:Avahi mDNS/DNS-SD Stack:/var/run/avahi-daemon:/sbin/nologin
+rpc:x:32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin
+colord:x:997:993:User for colord:/var/lib/colord:/sbin/nologin
+clevis:x:996:992:Clevis Decryption Framework unprivileged user:/var/cache/clevis:/usr/sbin/nologin
+rtkit:x:172:172:RealtimeKit:/proc:/sbin/nologin
+sssd:x:995:991:User for sssd:/:/sbin/nologin
+geoclue:x:994:990:User for geoclue:/var/lib/geoclue:/sbin/nologin
+libstoragemgmt:x:993:989:daemon account for libstoragemgmt:/var/run/lsm:/sbin/nologin
+setroubleshoot:x:992:988:SELinux troubleshoot server:/var/lib/setroubleshoot:/sbin/nologin
+pipewire:x:991:986:PipeWire System Daemon:/var/run/pipewire:/sbin/nologin
+flatpak:x:990:985:User for flatpak system helper:/:/sbin/nologin
+gdm:x:42:42::/var/lib/gdm:/sbin/nologin
+cockpit-ws:x:989:984:User for cockpit web service:/nonexisting:/sbin/nologin
+cockpit-wsinstance:x:988:983:User for cockpit-ws instances:/nonexisting:/sbin/nologin
+gnome-initial-setup:x:987:982::/run/gnome-initial-setup/:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/sbin/nologin
+chrony:x:986:981::/var/lib/chrony:/sbin/nologin
+dnsmasq:x:985:980:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+systemd-oom:x:978:978:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+student:x:1000:1000:student:/home/student:/bin/bash
+akram:x:1001:10::/home/akram:/bin/bash
+AKRAM1:x:1002:1000::/home/AKRAM1:/bin/bash
+AKRAM:x:1003:1000::/home/AKRAM:/bin/bash
+user1:x:1004:1004::/home/user1:/bin/bash
+user2:x:1005:1005::/home/user2:/bin/bash
+user3:x:1006:1006::/home/user3:/bin/bash
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ mv ~/mypasswd ~/oldpasswd
+[student@localhost ~]$ ls ~ |grep oldpasswd
+oldpasswd
+[student@localhost ~]$ ls ~
+ Admin       file               Nti_file    quiz1.eval2     testfilerm
+ Desktop     file_diffination   nti_file2   quiz2.eval2     user_list.txt
+ docs        first.txt          oldpasswd   System          Videos
+ Documents   Links              Pictures   'System Admin'
+ Downloads   Music              Public      Templates
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ ~
+bash: /home/student: Is a directory
+[student@localhost ~]$ cd /home/student
+[student@localhost ~]$ cd
+[student@localhost ~]$ cd $HOME
+[student@localhost ~]$ cd
+[student@localhost ~]$ student/bin
+bash: student/bin: No such file or directory
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ ls /student/bin/w*
+ls: cannot access '/student/bin/w*': No such file or directory
+[student@localhost ~]$ ls /student/w*
+ls: cannot access '/student/w*': No such file or directory
+[student@localhost ~]$ ls /usr/bin/w*
+/usr/bin/w           /usr/bin/wget           /usr/bin/wireplumber
+/usr/bin/wait        /usr/bin/whatis         /usr/bin/wnck-urgency-monitor
+/usr/bin/wall        /usr/bin/whatis.man-db  /usr/bin/wpctl
+/usr/bin/watch       /usr/bin/whereis        /usr/bin/wpexec
+/usr/bin/watchgnupg  /usr/bin/which          /usr/bin/write
+/usr/bin/wavpack     /usr/bin/whiptail       /usr/bin/wvgain
+/usr/bin/wc          /usr/bin/who            /usr/bin/wvtag
+/usr/bin/wdctl       /usr/bin/whoami         /usr/bin/wvunpack
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ head -n 4 /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ tail -n /etc/passwd
+tail: invalid number of lines: ‘/etc/passwd’
+[student@localhost ~]$ tail -n 7 /etc/passwd
+student:x:1000:1000:student:/home/student:/bin/bash
+akram:x:1001:10::/home/akram:/bin/bash
+AKRAM1:x:1002:1000::/home/AKRAM1:/bin/bash
+AKRAM:x:1003:1000::/home/AKRAM:/bin/bash
+user1:x:1004:1004::/home/user1:/bin/bash
+user2:x:1005:1005::/home/user2:/bin/bash
+user3:x:1006:1006::/home/user3:/bin/bash
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ man passwd
+[student@localhost ~]$ man passwd; man 5 passwd
+[student@localhost ~]$ man 5 passwd
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost home]$ touch view_passwd_man_pages.sh
+touch: cannot touch 'view_passwd_man_pages.sh': Permission denied
+[student@localhost home]$ vi view_passwd_man_pages.sh
+[student@localhost home]$ man passwd; man passwd
+[student@localhost home]$ man -k passwd
+passwd: nothing appropriate.
+[student@localhost home]$ 
+
+
+[student@192 ~]$ ls
+ Admin       file               Nti_file    quiz1.eval2     testfilerm
+ Desktop     file_diffination   nti_file2   quiz2.eval2     user_list.txt
+ docs        first.txt          oldpasswd   System          Videos
+ Documents   Links              Pictures   'System Admin'
+ Downloads   Music              Public      Templates
+[student@192 ~]$ pwd
+/home/student
+[student@192 ~]$ man -k passwd
+passwd: nothing appropriate.
+[student@192 ~]$ sudo mandb
+[sudo] password for student: 
+Processing manual pages under /usr/share/man/overrides...
+Updating index cache for path `/usr/share/man/overrides/man3'. Wait...done.
+Checking for stray cats under /usr/share/man/overrides...
+Checking for stray cats under /var/cache/man/overrides...
+Processing manual pages under /usr/share/man...
+Updating index cache for path `/usr/share/man/man1'. Wait...
+
+mandb: warning: /usr/share/man/man1/grub2-emu.1.gz: whatis parse for grub2-emu(1) failed
+mandb: warning: /usr/share/man/man1/grub2-mount.1.gz: whatis parse for grub2-mount(1) failed
+Updating index cache for path `/usr/share/man/man8'. Wait...mandb: can't open /usr/share/man/man8/nss-resolve.8: No such file or directory
+mandb: warning: /usr/share/man/man8/libnss_resolve.so.2.8.gz: bad symlink or ROFF `.so' request
+Updating index cache for path `/usr/share/man/mann'. Wait...done.
+Checking for stray cats under /usr/share/man...
+Checking for stray cats under /var/cache/man...
+Purging old database entries in /usr/share/man/overrides...
+Processing manual pages under /usr/share/man/overrides...
+Processing manual pages under /usr/share/man/hu...
+Updating index cache for path `/usr/share/man/hu/man8'. Wait...done.
+Checking for stray cats under /usr/share/man/hu...
+Checking for stray cats under /var/cache/man/hu...
+Processing manual pages under /usr/share/man/ru...
+Updating index cache for path `/usr/share/man/ru/man7'. Wait...done.
+Checking for stray cats under /usr/share/man/ru...
+Checking for stray cats under /var/cache/man/ru...
+Processing manual pages under /usr/share/man/cs...
+Updating index cache for path `/usr/share/man/cs/man7'. Wait...done.
+Checking for stray cats under /usr/share/man/cs...
+Checking for stray cats under /var/cache/man/cs...
+Processing manual pages under /usr/share/man/da...
+Updating index cache for path `/usr/share/man/da/man8'. Wait...done.
+Checking for stray cats under /usr/share/man/da...
+Checking for stray cats under /var/cache/man/da...
+Processing manual pages under /usr/share/man/de...
+Updating index cache for path `/usr/share/man/de/man8'. Wait...done.
+Checking for stray cats under /usr/share/man/de...
+Checking for stray cats under /var/cache/man/de...
+Processing manual pages under /usr/share/man/fr...
+Updating index cache for path `/usr/share/man/fr/man7'. Wait...done.
+Checking for stray cats under /usr/share/man/fr...
+Checking for stray cats under /var/cache/man/fr...
+Processing manual pages under /usr/share/man/id...
+Updating index cache for path `/usr/share/man/id/man5'. Wait...done.
+Checking for stray cats under /usr/share/man/id...
+Checking for stray cats under /var/cache/man/id...
+Processing manual pages under /usr/share/man/it...
+Updating index cache for path `/usr/share/man/it/man8'. Wait...done.
+Checking for stray cats under /usr/share/man/it...
+Checking for stray cats under /var/cache/man/it...
+Processing manual pages under /usr/share/man/ja...
+Updating index cache for path `/usr/share/man/ja/man7'. Wait...done.
+Checking for stray cats under /usr/share/man/ja...
+Checking for stray cats under /var/cache/man/ja...
+Processing manual pages under /usr/share/man/ko...
+Updating index cache for path `/usr/share/man/ko/man8'. Wait...done.
+Checking for stray cats under /usr/share/man/ko...
+Checking for stray cats under /var/cache/man/ko...
+Processing manual pages under /usr/share/man/pl...
+Updating index cache for path `/usr/share/man/pl/man5'. Wait...done.
+Checking for stray cats under /usr/share/man/pl...
+Checking for stray cats under /var/cache/man/pl...
+Processing manual pages under /usr/share/man/pt_BR...
+Updating index cache for path `/usr/share/man/pt_BR/man8'. Wait...done.
+Checking for stray cats under /usr/share/man/pt_BR...
+Checking for stray cats under /var/cache/man/pt_BR...
+Processing manual pages under /usr/share/man/sv...
+Updating index cache for path `/usr/share/man/sv/man7'. Wait...done.
+Checking for stray cats under /usr/share/man/sv...
+Checking for stray cats under /var/cache/man/sv...
+Processing manual pages under /usr/share/man/tr...
+Updating index cache for path `/usr/share/man/tr/man1'. Wait...mandb: warning: /usr/share/man/tr/man1/evim.1.gz: whatis parse for evim(1) failed
+mandb: warning: /usr/share/man/tr/man1/vim.1.gz: whatis parse for rview(1) failed
+mandb: warning: /usr/share/man/tr/man1/vim.1.gz: whatis parse for view(1) failed
+mandb: warning: /usr/share/man/tr/man1/vim.1.gz: whatis parse for vim(1) failed
+mandb: warning: /usr/share/man/tr/man1/vim.1.gz: whatis parse for rvim(1) failed
+mandb: warning: /usr/share/man/tr/man1/vim.1.gz: whatis parse for ex(1) failed
+mandb: warning: /usr/share/man/tr/man1/vimdiff.1.gz: whatis parse for vimdiff(1) failed
+mandb: warning: /usr/share/man/tr/man1/vimtutor.1.gz: whatis parse for vimtutor(1) failed
+Updating index cache for path `/usr/share/man/tr/man7'. Wait...done.
+Checking for stray cats under /usr/share/man/tr...
+Checking for stray cats under /var/cache/man/tr...
+Processing manual pages under /usr/share/man/zh_CN...
+Updating index cache for path `/usr/share/man/zh_CN/man8'. Wait...done.
+Checking for stray cats under /usr/share/man/zh_CN...
+Checking for stray cats under /var/cache/man/zh_CN...
+Processing manual pages under /usr/share/man/zh_TW...
+Updating index cache for path `/usr/share/man/zh_TW/man8'. Wait...done.
+Checking for stray cats under /usr/share/man/zh_TW...
+Checking for stray cats under /var/cache/man/zh_TW...
+Processing manual pages under /usr/share/man/uk...
+Updating index cache for path `/usr/share/man/uk/man7'. Wait...done.
+Checking for stray cats under /usr/share/man/uk...
+Checking for stray cats under /var/cache/man/uk...
+Processing manual pages under /usr/share/man/es...
+Updating index cache for path `/usr/share/man/es/man1'. Wait...done.
+Checking for stray cats under /usr/share/man/es...
+Checking for stray cats under /var/cache/man/es...
+Processing manual pages under /usr/share/man/sk...
+Updating index cache for path `/usr/share/man/sk/man8'. Wait...done.
+Checking for stray cats under /usr/share/man/sk...
+Checking for stray cats under /var/cache/man/sk...
+Processing manual pages under /usr/share/man/ca...
+Updating index cache for path `/usr/share/man/ca/man5'. Wait...done.
+Checking for stray cats under /usr/share/man/ca...
+Checking for stray cats under /var/cache/man/ca...
+Processing manual pages under /usr/share/man/nl...
+Updating index cache for path `/usr/share/man/nl/man1'. Wait...done.
+Checking for stray cats under /usr/share/man/nl...
+Checking for stray cats under /var/cache/man/nl...
+Processing manual pages under /usr/share/man/pt...
+Updating index cache for path `/usr/share/man/pt/man5'. Wait...done.
+Checking for stray cats under /usr/share/man/pt...
+Checking for stray cats under /var/cache/man/pt...
+Processing manual pages under /usr/share/man/sr...
+Updating index cache for path `/usr/share/man/sr/man8'. Wait...done.
+Checking for stray cats under /usr/share/man/sr...
+Checking for stray cats under /var/cache/man/sr...
+Processing manual pages under /usr/local/share/man...
+Updating index cache for path `/usr/local/share/man/mann'. Wait...done.
+Checking for stray cats under /usr/local/share/man...
+Checking for stray cats under /var/cache/man/local...
+119 man subdirectories contained newer manual pages.
+7771 manual pages were added.
+0 stray cats were added.
+0 old database entries were purged.
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ man -k passwd
+chgpasswd (8)        - update group passwords in batch mode
+chpasswd (8)         - update passwords in batch mode
+fgetpwent_r (3)      - get passwd file entry reentrantly
+getpwent_r (3)       - get passwd file entry reentrantly
+gpasswd (1)          - administer /etc/group and /etc/gshadow
+grub2-mkpasswd-pbkdf2 (1) - Generate a PBKDF2 password hash.
+lpasswd (1)          - Change group or user password
+openssl-passwd (1ossl) - compute password hashes
+pam_localuser (8)    - require users to be listed in /etc/passwd
+passwd (1)           - update user's authentication tokens
+passwd (1ossl)       - OpenSSL application commands
+passwd (5)           - password file
+passwd2des (3)       - RFS password encryption
+pwhistory_helper (8) - Helper binary that transfers password hashes from pass...
+smbpasswd (5)        - The Samba encrypted password file
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ ^C
+[student@192 ~]$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+polkitd:x:998:996:User for polkitd:/:/sbin/nologin
+tss:x:59:59:Account used for TPM access:/dev/null:/sbin/nologin
+avahi:x:70:70:Avahi mDNS/DNS-SD Stack:/var/run/avahi-daemon:/sbin/nologin
+rpc:x:32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin
+colord:x:997:993:User for colord:/var/lib/colord:/sbin/nologin
+clevis:x:996:992:Clevis Decryption Framework unprivileged user:/var/cache/clevis:/usr/sbin/nologin
+rtkit:x:172:172:RealtimeKit:/proc:/sbin/nologin
+sssd:x:995:991:User for sssd:/:/sbin/nologin
+geoclue:x:994:990:User for geoclue:/var/lib/geoclue:/sbin/nologin
+libstoragemgmt:x:993:989:daemon account for libstoragemgmt:/var/run/lsm:/sbin/nologin
+setroubleshoot:x:992:988:SELinux troubleshoot server:/var/lib/setroubleshoot:/sbin/nologin
+pipewire:x:991:986:PipeWire System Daemon:/var/run/pipewire:/sbin/nologin
+flatpak:x:990:985:User for flatpak system helper:/:/sbin/nologin
+gdm:x:42:42::/var/lib/gdm:/sbin/nologin
+cockpit-ws:x:989:984:User for cockpit web service:/nonexisting:/sbin/nologin
+cockpit-wsinstance:x:988:983:User for cockpit-ws instances:/nonexisting:/sbin/nologin
+gnome-initial-setup:x:987:982::/run/gnome-initial-setup/:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/sbin/nologin
+chrony:x:986:981::/var/lib/chrony:/sbin/nologin
+dnsmasq:x:985:980:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+systemd-oom:x:978:978:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+student:x:1000:1000:student:/home/student:/bin/bash
+akram:x:1001:10::/home/akram:/bin/bash
+AKRAM1:x:1002:1000::/home/AKRAM1:/bin/bash
+AKRAM:x:1003:1000::/home/AKRAM:/bin/bash
+user1:x:1004:1004::/home/user1:/bin/bash
+user2:x:1005:1005::/home/user2:/bin/bash
+user3:x:1006:1006::/home/user3:/bin/bash
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ man 5 passwd
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ vi mycv
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ cat mycv
+**Curriculum Vitae (CV)**
+
+**Name:** Akram Elgazzar
+**Age:** 25  
+**Email:** akram.elgazar7@gmail.com  
+**Phone:** +01225163833
+
+**Education:**    
+- **College:** ACU University - B.Sc. Computer Science (2017-2021)  
+
+**Experience:**  
+- **Data Engineer** at Global Brands Group. (Mar.2025-present)  
+- **Big Data Engineer** at NTI (Feb.2025-Present)    
+
+**Skills:**  
+- Linux, Python, SQL, SSIS, Pyspark, Hive, Powerbi
+
+**Certifications:**  
+- Data Engineering
+- SQL Server
+- AWS Certified Cloud Practitioner  
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ vi mycv
+[student@192 ~]$ 
+[student@192 ~]$ cat /etc/shells
+/bin/sh
+/bin/bash
+/usr/bin/sh
+/usr/bin/bash
+[student@192 ~]$ echo $SHELL
+/bin/bash
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ 
