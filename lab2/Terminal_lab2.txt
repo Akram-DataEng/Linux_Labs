@@ -1,0 +1,459 @@
+[student@localhost ~]$ echo "Available shells:"
+Available shells:
+[student@localhost ~]$ 
+[student@localhost ~]$ cat /etc/shells
+/bin/sh
+/bin/bash
+/usr/bin/sh
+/usr/bin/bash
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Environment variables:"
+Environment variables:
+[student@localhost ~]$ 
+[student@localhost ~]$ printenv | head -10
+SHELL=/bin/bash
+SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/2078,unix/unix:/tmp/.ICE-unix/2078
+COLORTERM=truecolor
+HISTCONTROL=ignoredups
+XDG_MENU_PREFIX=gnome-
+HISTSIZE=1000
+HOSTNAME=localhost
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Current shell:"
+Current shell:
+[student@localhost ~]$ 
+[student@localhost ~]$ echo $SHELL
+/bin/bash
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Bash environment variables:"
+Bash environment variables:
+[student@localhost ~]$ 
+[student@localhost ~]$ env | grep BASH
+BASH_FUNC_which%%=() {  ( alias;
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Redirecting ls output to file_list.txt..."
+Redirecting ls output to file_list.txt...
+[student@localhost ~]$ 
+[student@localhost ~]$ ls > file_list.txt
+[student@localhost ~]$ cat file_list.txt
+Admin
+data.csv
+Desktop
+dmesg_output.txt
+docs
+Documents
+Downloads
+file
+file231
+file_diffination
+file_list.txt
+first.txt
+Links
+log.txt
+Music
+mycv
+Nti_file
+nti_file2
+oldpasswd
+outputfile
+Pictures
+Public
+quiz1.eval2
+quiz2.eval2
+stdou
+System
+System Admin
+Templates
+testfilerm
+user_list.txt
+Videos
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Listing .txt files in directory..."
+Listing .txt files in directory...
+[student@localhost ~]$ 
+[student@localhost ~]$ ls *.txt
+dmesg_output.txt  first.txt  user_list.txt
+file_list.txt     log.txt
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Appending ls output to file_list.txt..."
+Appending ls output to file_list.txt...
+[student@localhost ~]$ 
+[student@localhost ~]$ ls >> file_list.txt
+[student@localhost ~]$ cat file_list.txt
+Admin
+data.csv
+Desktop
+dmesg_output.txt
+docs
+Documents
+Downloads
+file
+file231
+file_diffination
+file_list.txt
+first.txt
+Links
+log.txt
+Music
+mycv
+Nti_file
+nti_file2
+oldpasswd
+outputfile
+Pictures
+Public
+quiz1.eval2
+quiz2.eval2
+stdou
+System
+System Admin
+Templates
+testfilerm
+user_list.txt
+Videos
+Admin
+data.csv
+Desktop
+dmesg_output.txt
+docs
+Documents
+Downloads
+file
+file231
+file_diffination
+file_list.txt
+first.txt
+Links
+log.txt
+Music
+mycv
+Nti_file
+nti_file2
+oldpasswd
+outputfile
+Pictures
+Public
+quiz1.eval2
+quiz2.eval2
+stdou
+System
+System Admin
+Templates
+testfilerm
+user_list.txt
+Videos
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Filtering files with 'report'..."
+Filtering files with 'report'...
+[student@localhost ~]$ 
+[student@localhost ~]$ ls | grep report
+[student@localhost ~]$ grep "report" file_list.txt
+[student@localhost ~]$ ls | grep -i report
+[student@localhost ~]$ find . -iname "*report*"
+[student@localhost ~]$ grep "report" Nti_file
+[student@localhost ~]$ nano file_list.txt
+[student@localhost ~]$ nano nti_file2
+[student@localhost ~]$ ls | grep report
+[student@localhost ~]$ grep "report" nti_file2
+report.txt  
+monthly_report.csv  
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Displaying first and last 10 lines of filename..."
+Displaying first and last 10 lines of filename...
+[student@localhost ~]$ 
+[student@localhost ~]$ head -10 filename
+head: cannot open 'filename' for reading: No such file or directory
+[student@localhost ~]$ head -10 first.txt
+ hi        dnnsjbjbjb kkk[
+
+
+dnnsjbjbjb kkk
+
+
+
+dnnsjbjbjb kkk
+[student@localhost ~]$ nano first.txt
+[student@localhost ~]$ head -10 first.txt
+HIIIIIIIIIII
+2
+3
+line 4
+6
+7
+8
+line 9
+line 10
+dnnsjbjbjb kkk
+[student@localhost ~]$ tail -10 first.txt
+6
+7
+8
+line 9
+line 10
+dnnsjbjbjb kkk
+
+
+
+dnnsjbjbjb kkk
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Extracting second column from data.csv..."
+Extracting second column from data.csv...
+[student@localhost ~]$ 
+[student@localhost ~]$ cut -d ',' -f2 data.csv
+dataengineer
+accountant
+engineer
+
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Searching for 'ERROR' in log.txt..."
+Searching for 'ERROR' in log.txt...
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ grep "ERROR" log.txt
+ERROR: Failed to load module.
+[student@localhost ~]$ 
+[student@localhost ~]$ cat log.txt
+INFO: System is running smoothly.
+WARNING: Disk space is low.
+ERROR: Failed to load module.
+DEBUG: Checking network status.
+
+[student@localhost ~]$ 
+[student@localhost ~]$ grep -c "ERROR" log.txt
+1
+[student@localhost ~]$ grep -n "ERROR" log.txt
+3:ERROR: Failed to load module.
+[student@localhost ~]$ 
+[student@localhost ~]$ grep "WARN" log.txt
+WARNING: Disk space is low.
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Creating a shell variable storing current user..."
+Creating a shell variable storing current user...
+[student@localhost ~]$ 
+[student@localhost ~]$ current_user=$(whoami)
+[student@localhost ~]$ echo "Current user: $current_user"
+Current user: student
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Converting lowercase to uppercase..."
+Converting lowercase to uppercase...
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "hello world" | tr '[:lower:]' '[:upper:]'
+HELLO WORLD
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Akram Elgazzar" | tr '[:lower:]' '[:upper:]'
+AKRAM ELGAZZAR
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Searching for a specific process..."
+Searching for a specific process...
+[student@localhost ~]$ 
+[student@localhost ~]$ ps aux | grep process_name
+student     4658  0.0  0.1 221668  2420 pts/0    S+   05:28   0:00 grep --color=auto process_name
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ ps aux | grep 1234
+student     4699  0.0  0.1 221668  2232 pts/0    S+   05:29   0:00 grep --color=auto 1234
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Creating alias for ls..."
+Creating alias for ls...
+[student@localhost ~]$ 
+[student@localhost ~]$ alias ls='ls -l'
+[student@localhost ~]$ ls
+total 184
+drwxrwxr-x.  2 student student      6 Dec  1 14:15  Admin
+-rw-rw-r--.  1 student student     66 Apr  6 08:38  data.csv
+drwxr-xr-x. 13 student student    191 Dec  8 11:38  Desktop
+-rw-rw-r--.  1 student student 118844 Apr  6 09:32  dmesg_output.txt
+drwxrwxr-x.  2 student student     18 Apr  5 09:00  docs
+drwxr-xr-x.  2 student student      6 Mar 28  2023  Documents
+drwxr-xr-x.  2 student student      6 Mar 28  2023  Downloads
+-rw-rw-r--.  1 student student    181 Apr  5 08:55  file
+-rw-rw-r--.  1 student student      0 Apr  6 03:56  file231
+-rw-rw-r--.  1 student student    182 Apr  5 08:56  file_diffination
+-rw-rw-r--.  1 student student    585 Apr  7 05:13  file_list.txt
+-rw-rw-r--.  1 student student     78 Apr  7 05:19  first.txt
+drwxrwxr-x.  2 student student     45 Dec  8 12:04  Links
+-rw-rw-r--.  1 student student    125 Apr  6 08:49  log.txt
+drwxr-xr-x.  2 student student      6 Mar 28  2023  Music
+-rw-rw-r--.  1 student student    513 Apr  5 16:10  mycv
+-rw-rw-r--.  1 student student     51 Apr  6 09:23  Nti_file
+-rw-rw-r--.  1 student student    106 Apr  7 05:15  nti_file2
+-rw-r--r--.  1 student student   2462 Apr  5 09:20  oldpasswd
+-rw-rw-r--.  1 student student     33 Apr  6 05:35  outputfile
+drwxr-xr-x.  2 student student      6 Mar 28  2023  Pictures
+drwxr-xr-x.  2 student student      6 Mar 28  2023  Public
+-rwxrwxr-x.  1 student student    101 Dec 13 10:38  quiz1.eval2
+-rwxrwxr-x.  1 student student    200 Dec 13 10:48  quiz2.eval2
+-rw-rw-r--.  1 student student    316 Apr  6 05:46  stdou
+drwxrwxr-x.  2 student student      6 Dec  1 14:15  System
+drwxrwxr-x.  2 student student      6 Dec  1 14:16 'System Admin'
+drwxr-xr-x.  2 student student      6 Mar 28  2023  Templates
+-rw-rw-r--.  1 student student     92 Apr  5 08:44  testfilerm
+-rw-rw-r--.  1 student student     54 Dec 13 08:08  user_list.txt
+drwxr-xr-x.  2 student student      6 Mar 28  2023  Videos
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Searching for a specific process..."
+Searching for a specific process...
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ ps aux | grep firefox
+student     4774  0.0  0.1 221668  2260 pts/0    S+   05:33   0:00 grep --color=auto firefox
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ unalias ls
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Sorting files by size..."
+Sorting files by size...
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ ls -lS
+total 184
+-rw-rw-r--.  1 student student 118844 Apr  6 09:32  dmesg_output.txt
+-rw-r--r--.  1 student student   2462 Apr  5 09:20  oldpasswd
+-rw-rw-r--.  1 student student    585 Apr  7 05:13  file_list.txt
+-rw-rw-r--.  1 student student    513 Apr  5 16:10  mycv
+-rw-rw-r--.  1 student student    316 Apr  6 05:46  stdou
+-rwxrwxr-x.  1 student student    200 Dec 13 10:48  quiz2.eval2
+drwxr-xr-x. 13 student student    191 Dec  8 11:38  Desktop
+-rw-rw-r--.  1 student student    182 Apr  5 08:56  file_diffination
+-rw-rw-r--.  1 student student    181 Apr  5 08:55  file
+-rw-rw-r--.  1 student student    125 Apr  6 08:49  log.txt
+-rw-rw-r--.  1 student student    106 Apr  7 05:15  nti_file2
+-rwxrwxr-x.  1 student student    101 Dec 13 10:38  quiz1.eval2
+-rw-rw-r--.  1 student student     92 Apr  5 08:44  testfilerm
+-rw-rw-r--.  1 student student     78 Apr  7 05:19  first.txt
+-rw-rw-r--.  1 student student     66 Apr  6 08:38  data.csv
+-rw-rw-r--.  1 student student     54 Dec 13 08:08  user_list.txt
+-rw-rw-r--.  1 student student     51 Apr  6 09:23  Nti_file
+drwxrwxr-x.  2 student student     45 Dec  8 12:04  Links
+-rw-rw-r--.  1 student student     33 Apr  6 05:35  outputfile
+drwxrwxr-x.  2 student student     18 Apr  5 09:00  docs
+drwxrwxr-x.  2 student student      6 Dec  1 14:15  Admin
+drwxr-xr-x.  2 student student      6 Mar 28  2023  Documents
+drwxr-xr-x.  2 student student      6 Mar 28  2023  Downloads
+drwxr-xr-x.  2 student student      6 Mar 28  2023  Music
+drwxr-xr-x.  2 student student      6 Mar 28  2023  Pictures
+drwxr-xr-x.  2 student student      6 Mar 28  2023  Public
+drwxrwxr-x.  2 student student      6 Dec  1 14:15  System
+drwxrwxr-x.  2 student student      6 Dec  1 14:16 'System Admin'
+drwxr-xr-x.  2 student student      6 Mar 28  2023  Templates
+drwxr-xr-x.  2 student student      6 Mar 28  2023  Videos
+-rw-rw-r--.  1 student student      0 Apr  6 03:56  file231
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Counting lines containing 'success'..."
+Counting lines containing 'success'...
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ nano Nti_file
+[student@localhost ~]$ grep -c "success" Nti_file
+2
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Redirecting dmesg output and viewing first 20 lines..."
+Redirecting dmesg output and viewing first 20 lines...
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ dmesg > dmesg_output.txt
+[student@localhost ~]$ head -20 dmesg_output.txt
+[    0.000000] Linux version 5.14.0-70.22.1.el9_0.x86_64 (mockbuild@x86-vm-08.build.eng.bos.redhat.com) (gcc (GCC) 11.2.1 20220127 (Red Hat 11.2.1-9), GNU ld version 2.35.2-17.el9) #1 SMP PREEMPT Tue Aug 2 10:02:12 EDT 2022
+[    0.000000] The list of certified hardware and cloud instances for Red Hat Enterprise Linux 9 can be viewed at the Red Hat Ecosystem Catalog, https://catalog.redhat.com.
+[    0.000000] Command line: BOOT_IMAGE=(hd0,msdos1)/vmlinuz-5.14.0-70.22.1.el9_0.x86_64 root=/dev/mapper/rhel-root ro crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M resume=/dev/mapper/rhel-swap rd.lvm.lv=rhel/root rd.lvm.lv=rhel/swap rhgb quiet
+[    0.000000] Disabled fast string operations
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+[    0.000000] x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+[    0.000000] x86/fpu: Enabled xstate features 0x7, context size is 832 bytes, using 'compacted' format.
+[    0.000000] signal: max sigframe size: 1776
+[    0.000000] BIOS-provided physical RAM map:
+[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x0000000000097bff] usable
+[    0.000000] BIOS-e820: [mem 0x0000000000097c00-0x000000000009ffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000000ce000-0x00000000000cffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000000dc000-0x00000000000fffff] reserved
+[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x000000007fedffff] usable
+[    0.000000] BIOS-e820: [mem 0x000000007fee0000-0x000000007fefefff] ACPI data
+[    0.000000] BIOS-e820: [mem 0x000000007feff000-0x000000007fefffff] ACPI NVS
+[    0.000000] BIOS-e820: [mem 0x000000007ff00000-0x000000007fffffff] usable
+[    0.000000] BIOS-e820: [mem 0x00000000f0000000-0x00000000f7ffffff] reserved
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ echo "Extracting first field from CSV..."
+Extracting first field from CSV...
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$ cut -d ',' -f1 filename.csv
+cut: filename.csv: No such file or directory
+[student@localhost ~]$ ls -a
+ .		    Downloads	       oldpasswd
+ ..		    file	       outputfile
+ Admin		    file231	       Pictures
+ .bash_history	    file_diffination   Public
+ .bash_logout	    file_list.txt      quiz1.eval2
+ .bash_profile	    first.txt	       quiz2.eval2
+ .bashrc	    .lesshst	       .ssh
+ .bashrc.save	    Links	       stdou
+ .bashrc.save.1     .local	       System
+ .cache		    log.txt	      'System Admin'
+ .config	    .mozilla	       Templates
+ data.csv	    Music	       testfilerm
+ Desktop	    mycv	       user_list.txt
+ dmesg_output.txt   Nti_file	       Videos
+ docs		    nti_file2	       .viminfo
+ Documents	    .Nti_file.swp
+[student@localhost ~]$ cut -d ',' -f1 data.csv
+akram
+ahmed
+mohamed
+
+[student@localhost ~]$ 
+[student@localhost ~]$ 
+[student@localhost ~]$
