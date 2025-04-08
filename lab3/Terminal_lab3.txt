@@ -1,0 +1,819 @@
+[student@192 ~]$ echo "1️⃣ Create a user account (your first name)"
+1️⃣ Create a user account (your first name)
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ sudo useradd -m -c "Akram Elgazzar" akram
+useradd: user 'akram' already exists
+[student@192 ~]$ 
+[student@192 ~]$ echo "akram:islam" | sudo chpasswd
+[student@192 ~]$ 
+[student@192 ~]$ grep akram /etc/passwd
+akram:x:1008:1008:Akram Elgazzar:/home/akram:/bin/bash
+[student@192 ~]$ 
+[student@192 ~]$ ls -ld /home/akram
+drwxr-x---. 5 akram akram 4096 Apr  7 19:02 /home/akram
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ echo"2️⃣ Create user baduser"
+bash: echo2️⃣ Create user baduser: command not found...
+[student@192 ~]$ echo "2️⃣ Create user baduser"
+2️⃣ Create user baduser
+[student@192 ~]$ 
+[student@192 ~]$ sudo useradd -m -c "Bad User" baduser
+[student@192 ~]$ echo "baduser:baduser" | sudo chpasswd
+[student@192 ~]$ 
+[student@192 ~]$ grep baduser /etc/passwd
+baduser:x:1011:1011:Bad User:/home/baduser:/bin/bash
+[student@192 ~]$ 
+[student@192 ~]$ ls -ld /home/baduser
+drwx------. 3 baduser baduser 78 Apr  7 19:42 /home/baduser
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ echo "3️⃣ Create a secondary group called pgroup with GID 30000"
+3️⃣ Create a secondary group called pgroup with GID 30000
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ sudo groupadd -g 30000 pgroup
+groupadd: group 'pgroup' already exists
+[student@192 ~]$ 
+[student@192 ~]$ grep pgroup /etc/group
+pgroup:x:30000:akram,islam
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ echo "4️⃣ Create a supplementary group called badgroup"
+4️⃣ Create a supplementary group called badgroup
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ sudo groupadd badgroup
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ grep badgroup /etc/group
+badgroup:x:30001:
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ sudo useradd -m -c "Islam User" islam
+useradd: user 'islam' already exists
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ sudo usermod -aG pgroup islam
+[student@192 ~]$ 
+[student@192 ~]$ groups islam
+islam : islam pgroup
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ echo "6️⃣ Modify Islam's password"
+6️⃣ Modify Islam's password
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ echo "islam:password" | sudo chpasswd
+[student@192 ~]$ 
+[student@192 ~]$ sudo passwd -S islam
+islam PS 2025-04-06 0 99999 7 -1 (Password set, SHA512 crypt.)
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ echo "7️⃣ Modify Islam’s password expiration to 30 days"
+7️⃣ Modify Islam’s password expiration to 30 days
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ sudo chage -M 30 islam
+[student@192 ~]$ 
+[student@192 ~]$ sudo chage -l islam
+Last password change					: Apr 07, 2025
+Password expires					: May 07, 2025
+Password inactive					: never
+Account expires						: never
+Minimum number of days between password change		: 0
+Maximum number of days between password change		: 30
+Number of days of warning before password expires	: 7
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ echo "8️⃣ Lock baduser account"
+8️⃣ Lock baduser account
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ sudo passwd -l baduser
+Locking password for user baduser.
+passwd: Success
+[student@192 ~]$ 
+[student@192 ~]$ sudo passwd -S baduser
+baduser LK 2025-04-06 0 99999 7 -1 (Password locked.)
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ echo "9️⃣ Delete baduser account"
+9️⃣ Delete baduser account
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ grep baduser /etc/passwd
+baduser:x:1011:1011:Bad User:/home/baduser:/bin/bash
+[student@192 ~]$ 
+[student@192 ~]$ ls -ld /home/baduser
+drwx------. 3 baduser baduser 78 Apr  7 19:42 /home/baduser
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ echo "🔟 Delete badgroup"
+🔟 Delete badgroup
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ sudo groupdel badgroup
+[student@192 ~]$ 
+[student@192 ~]$ grep badgroup /etc/group
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ echo "1️⃣1️⃣ Create myteam directory and set read-only permissions
+> ^C
+[student@192 ~]$ echo "1️⃣1️⃣ Create myteam directory and set read-only permissions"
+1️⃣1️⃣ Create myteam directory and set read-only permissions
+[student@192 ~]$ 
+[student@192 ~]$ mkdir ~/myteam
+[student@192 ~]$ chmod 400 ~/myteam
+[student@192 ~]$ 
+[student@192 ~]$ ls -ld ~/myteam
+dr--------. 2 student student 6 Apr  7 19:53 /home/student/myteam
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ echo "1️⃣2️⃣ Log out and log in as student"
+1️⃣2️⃣ Log out and log in as student
+[student@192 ~]$ 
+[student@192 ~]$ su student
+Password: 
+Mon Apr  7 07:54:31 PM AST 2025
+[student@192 ~]$ 
+[student@192 ~]$ whoami
+student
+-------------------------------------------------------------------------------------------------------
+student@192 ~]$ su akram
+Password: 
+[akram@192 student]$ echo "1️⃣3️⃣ Try accessing myteam"
+1️⃣3️⃣ Try accessing myteam
+[akram@192 student]$ cd ~/myteam
+[akram@192 myteam]$ chmod 000 ~/myteam
+[akram@192 myteam]$ ls -ld ~/myteam
+d---------. 2 akram akram 6 Apr  7 09:26 /home/akram/myteam
+[akram@192 myteam]$ cd ~/myteam
+bash: cd: /home/akram/myteam: Permission denied
+[akram@192 myteam]$ 
+
+-------------------------------------------------------------------------------------------------------- 
+[student@192 ~]$ echo "1️⃣4️⃣ Adjust file permissions (chmod)"
+1️⃣4️⃣ Adjust file permissions (chmod)
+[student@192 ~]$ 
+[student@192 ~]$ sudo chmod u=rw,g=wx,o=x oldpasswd
+[student@192 ~]$ 
+[student@192 ~]$ sudo chmod 732 oldpasswd
+[student@192 ~]$ 
+[student@192 ~]$ ls -l oldpasswd
+-rwx-wx-w-. 1 student student 2462 Apr  5 09:20 oldpasswd
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ echo "1️⃣4️⃣ Change default permissions using umask"
+1️⃣4️⃣ Change default permissions using umask
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ umask 025
+[student@192 ~]$ 
+[student@192 ~]$ umask
+0025
+[student@192 ~]$ 
+[student@192 ~]$ echo "1️⃣4️⃣ Find max file & directory permissions"
+1️⃣4️⃣ Find max file & directory permissions
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ touch testfile
+[student@192 ~]$ mkdir testdir
+[student@192 ~]$ ls -l testfile testdir
+-rw-r---w-. 1 student student 0 Apr  7 19:58 testfile
+
+testdir:
+total 0
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ 
+------------------------------------
+[akram@192 myteam]$ echo "1️⃣4️⃣ Change default permissions to no access and verify"
+1️⃣4️⃣ Change default permissions to no access and verify
+[akram@192 myteam]$ 
+[akram@192 myteam]$ umask 777
+[akram@192 myteam]$ touch nopermfile
+touch: cannot touch 'nopermfile': Permission denied
+[akram@192 myteam]$ mkdir nopermdir
+mkdir: cannot create directory ‘nopermdir’: Permission denied
+[akram@192 myteam]$ ls -ld .
+ls: cannot access '.': Permission denied
+[akram@192 myteam]$ ls -ld ~/myteam
+d---------. 2 akram akram 6 Apr  7 09:26 /home/akram/myteam
+[akram@192 myteam]$ chmod 500 ~/myteam
+[akram@192 myteam]$ ls -ld ~/myteam
+dr-x------. 2 akram akram 6 Apr  7 09:26 /home/akram/myteam
+[akram@192 myteam]$ cd ~/myteam
+[akram@192 myteam]$ ls
+[akram@192 myteam]$ chmod 700 ~/myteam  # Gives write permission inside my team
+[akram@192 myteam]$ chmod 400 ~/myteam  # Removes execute permission
+
+-----------------------------------------------------------------------------------------------------------------
+[student@192 ~]$ echo "1️⃣5️⃣ Find all modified files in the last two days"
+1️⃣5️⃣ Find all modified files in the last two days
+[student@192 ~]$ 
+[student@192 ~]$ find ~/ -type f -mtime -2 2>/dev/null
+/home/student/.bashrc
+/home/student/.local/share/gnome-shell/application_state
+/home/student/.local/share/evolution/addressbook/system/contacts.db
+/home/student/.local/share/gvfs-metadata/root
+/home/student/.local/share/gvfs-metadata/root-b7d90b2b.log
+/home/student/.local/state/wireplumber/restore-stream
+/home/student/.local/state/wireplumber/default-routes
+/home/student/.config/ibus/bus/dc70f37b46ce40bfb7c380e3fc2a4613-unix-wayland-0
+/home/student/.config/dconf/user
+/home/student/.config/gtk-3.0/bookmarks
+/home/student/.cache/gnome-software/odrs/ratings.json
+/home/student/first.txt
+/home/student/.bash_history
+/home/student/Nti_file
+/home/student/nti_file2
+/home/student/file231
+/home/student/.bashrc.save
+/home/student/.bashrc.save.1
+/home/student/outputfile
+/home/student/stdou
+/home/student/file_list.txt
+/home/student/data.csv
+/home/student/log.txt
+/home/student/dmesg_output.txt
+/home/student/.xauthVz4ne2
+/home/student/.xauthPchT0N
+/home/student/.xauthZpTaFa
+/home/student/.xauthgvxXJP
+/home/student/.xauth88t5TR
+/home/student/result
+/home/student/passwd_copy
+/home/student/.xauthMMNnKf
+/home/student/testfile
+_______________________________________________________________________________________________
+
+[student@192 ~]$ echo "1️⃣6️⃣ Find files owned by root in /etc"
+1️⃣6️⃣ Find files owned by root in /etc
+[student@192 ~]$ 
+[student@192 ~]$ find /etc -user root
+/etc
+/etc/mtab
+/etc/fstab
+/etc/crypttab
+/etc/lvm
+/etc/lvm/devices
+/etc/lvm/devices/system.devices
+/etc/lvm/archive
+find: ‘/etc/lvm/archive’: Permission denied
+/etc/lvm/backup
+find: ‘/etc/lvm/backup’: Permission denied
+/etc/lvm/cache
+find: ‘/etc/lvm/cache’: Permission denied
+/etc/lvm/lvm.conf
+/etc/lvm/lvmlocal.conf
+/etc/lvm/profile
+/etc/lvm/profile/cache-mq.profile
+/etc/lvm/profile/cache-smq.profile
+/etc/lvm/profile/command_profile_template.profile
+/etc/lvm/profile/lvmdbusd.profile
+/etc/lvm/profile/metadata_profile_template.profile
+/etc/lvm/profile/thin-generic.profile
+/etc/lvm/profile/thin-performance.profile
+/etc/lvm/profile/vdo-small.profile
+/etc/resolv.conf
+/etc/dnf
+/etc/dnf/modules.d
+/etc/dnf/aliases.d
+/etc/dnf/dnf.conf
+/etc/dnf/modules.defaults.d
+/etc/dnf/plugins
+/etc/dnf/plugins/copr.conf
+/etc/dnf/plugins/copr.d
+/etc/dnf/plugins/debuginfo-install.conf
+/etc/dnf/plugins/kpatch.conf
+_________________________________________________________________________________
+[student@192 ~]$ echo "1️⃣7️⃣ Find all directories in home"1️⃣7️⃣ Find all directories in home
+[student@192 ~]$ 
+[student@192 ~]$ find ~/ -type d
+/home/student/
+/home/student/.mozilla
+/home/student/.mozilla/extensions
+/home/student/.mozilla/plugins
+/home/student/.local
+/home/student/.local/share
+/home/student/.local/share/keyrings
+/home/student/.local/share/gnome-shell
+/home/student/.local/share/evolution
+/home/student/.local/share/evolution/addressbook
+/home/student/.local/share/evolution/addressbook/trash
+/home/student/.local/share/evolution/addressbook/system
+/home/student/.local/share/evolution/addressbook/system/photos
+/home/student/.local/share/evolution/calendar
+/home/student/.local/share/evolution/calendar/trash
+/home/student/.local/share/evolution/calendar/system
+/home/student/.local/share/evolution/mail
+/home/student/.local/share/evolution/mail/trash
+/home/student/.local/share/evolution/memos
+/home/student/.local/share/evolution/memos/trash
+/home/student/.local/share/evolution/tasks
+/home/student/.local/share/evolution/tasks/trash
+/home/student/.local/share/evolution/tasks/system
+/home/student/.local/share/applications
+/home/student/.local/share/flatpak
+/home/student/.local/share/flatpak/db
+/home/student/.local/share/flatpak/repo
+/home/student/.local/share/flatpak/repo/tmp
+/home/student/.local/share/flatpak/repo/tmp/cache
+/home/student/.local/share/flatpak/repo/extensions
+/home/student/.local/share/flatpak/repo/state
+/home/student/.local/share/flatpak/repo/refs
+/home/student/.local/share/flatpak/repo/refs/heads
+/home/student/.local/share/flatpak/repo/refs/mirrors
+/home/student/.local/share/flatpak/repo/refs/remotes
+/home/student/.local/share/flatpak/repo/objects
+/home/student/.local/share/sounds
+/home/student/.local/share/pki
+/home/student/.local/share/pki/nssdb
+/home/student/.local/share/gvfs-metadata
+/home/student/.local/share/gnome-settings-daemon
+/home/student/.local/share/icc
+/home/student/.local/share/nautilus
+/home/student/.local/share/nautilus/tags
+/home/student/.local/share/nautilus/scripts
+/home/student/.local/state
+/home/student/.local/state/wireplumber
+/home/student/Desktop
+/home/student/Desktop/folder_a1
+/home/student/Desktop/folder_a2
+/home/student/Desktop/folder_a3
+/home/student/Desktop/folder_a4
+/home/student/Desktop/folder_a5
+/home/student/Desktop/folder_b1
+/home/student/Desktop/folder_b2
+/home/student/Desktop/folder_b3
+/home/student/Desktop/folder_b4
+/home/student/Desktop/folder_b5
+/home/student/Desktop/Desktop
+/home/student/Desktop/Desktop/folder_a1
+/home/student/Downloads
+/home/student/Templates
+/home/student/Public
+/home/student/Documents
+/home/student/Music
+/home/student/Pictures
+/home/student/Videos
+/home/student/.config
+/home/student/.config/ibus
+/home/student/.config/ibus/bus
+/home/student/.config/dconf
+/home/student/.config/pulse
+/home/student/.config/evolution
+/home/student/.config/evolution/sources
+/home/student/.config/goa-1.0
+/home/student/.config/gtk-3.0
+/home/student/.config/gnome-session
+/home/student/.config/gnome-session/saved-session
+/home/student/.config/procps
+/home/student/.config/nautilus
+/home/student/.config/enchant
+/home/student/.config/gedit
+/home/student/.cache
+/home/student/.cache/ibus
+/home/student/.cache/evolution
+/home/student/.cache/evolution/addressbook
+/home/student/.cache/evolution/addressbook/trash
+/home/student/.cache/evolution/calendar
+/home/student/.cache/evolution/calendar/trash
+/home/student/.cache/evolution/mail
+/home/student/.cache/evolution/mail/trash
+/home/student/.cache/evolution/memos
+/home/student/.cache/evolution/memos/trash
+/home/student/.cache/evolution/sources
+/home/student/.cache/evolution/sources/trash
+/home/student/.cache/evolution/tasks
+/home/student/.cache/evolution/tasks/trash
+/home/student/.cache/gnome-software
+/home/student/.cache/gnome-software/appstream
+/home/student/.cache/gnome-software/flatpak-system-default
+/home/student/.cache/gnome-software/flatpak-user-user
+/home/student/.cache/gnome-software/odrs
+/home/student/.cache/gstreamer-1.0
+/home/student/.cache/flatpak
+/home/student/.cache/flatpak/system-cache
+/home/student/.cache/appstream
+/home/student/.cache/gnome-desktop-thumbnailer
+/home/student/.cache/gnome-desktop-thumbnailer/gstreamer-1.0
+/home/student/.cache/thumbnails
+/home/student/.cache/thumbnails/large
+/home/student/.cache/samba
+/home/student/System
+/home/student/Admin
+/home/student/System Admin
+/home/student/Links
+/home/student/.ssh
+/home/student/docs
+/home/student/myteam
+/home/student/testdir
+_______________________________________________________________________
+
+[student@192 ~]$ echo "1️⃣8️⃣ Search for .profile files"
+1️⃣8️⃣ Search for .profile files
+[student@192 ~]$ 
+[student@192 ~]$ find / -name ".profile" 2>/dev/null
+_______________________________________________________________________
+
+[student@192 ~]$ echo "1️⃣9️⃣ Identify file types"
+1️⃣9️⃣ Identify file types
+[student@192 ~]$ 
+[student@192 ~]$ file /etc/passwd
+/etc/passwd: ASCII text
+[student@192 ~]$ file /dev/pts/0
+/dev/pts/0: character special (136/0)
+[student@192 ~]$ 
+[student@192 ~]$ file /etc
+/etc: directory
+[student@192 ~]$ file /dev/
+/dev/: directory
+_________________________________________________________________________
+[student@192 ~]$ echo "2️⃣0️⃣ List inode numbers"
+2️⃣0️⃣ List inode numbers
+[student@192 ~]$ 
+[student@192 ~]$ ls -i /
+50536140 afs        145 lib64    171413 sbin
+  171408 bin   50536144 media  33729611 srv
+     128 boot       150 mnt           1 sys
+       1 dev   17210471 opt    16777345 tmp
+33575041 etc          1 proc        140 usr
+33729610 home  16777346 root   33575046 var
+     143 lib          1 run
+[student@192 ~]$ ls -i /etc
+18082985 accountsservice
+34644591 adjtime
+33729580 aliases
+36095747 alsa
+17257902 alternatives
+34670122 anacrontab
+34153835 anthy-unicode.conf
+34768387 appstream.conf
+33829704 asound.conf
+36132145 at.deny
+  458241 audit
+  478484 authselect
+51266397 avahi
+17108407 bash_completion.d
+33729581 bashrc
+34545730 bindresvport.blacklist
+33729589 binfmt.d
+18083009 bluetooth
+35316148 brlapi.key
+  767251 brltty
+35316149 brltty.conf
+35102787 chromium
+36095914 chrony.conf
+36095916 chrony.keys
+34856611 cifs-utils
+  511579 cockpit
+51249849 cron.d
+51249855 cron.daily
+34670131 cron.deny
+18083564 cron.hourly
+  410930 cron.monthly
+34670137 crontab
+18083573 cron.weekly
+     154 crypto-policies
+33575044 crypttab
+33729582 csh.cshrc
+33729583 csh.login
+51249828 cups
+35527748 cupshelpers
+33575042 dbus-1
+34669090 dconf
+17325908 default
+51239080 depmod.d
+19342899 dhcp
+34363231 DIR_COLORS
+34363232 DIR_COLORS.lightbgcolor
+33575047 dnf
+36132133 dnsmasq.conf
+19343001 dnsmasq.d
+34982548 dracut.conf
+18161526 dracut.conf.d
+  271212 egl
+36095804 enscript.cfg
+33729584 environment
+33729585 ethertypes
+33729586 exports
+51780275 exports.d
+34545875 favicon.png
+33729587 filesystems
+19219627 firefox
+51779869 firewalld
+19036705 flatpak
+     152 fonts
+18993710 foomatic
+35236786 fprintd.conf
+33575043 fstab
+33598750 fuse.conf
+35314531 fwupd
+50982881 gcrypt
+  968834 gdm
+34768317 geoclue
+33911590 glvnd
+  409940 gnupg
+34153796 GREP_COLORS
+  269879 groff
+36267067 group
+36260963 group-
+36132107 grub2.cfg
+51246936 grub.d
+36267059 gshadow
+34297757 gshadow-
+51238888 gss
+  478618 gssproxy
+51217372 highlight
+33729590 host.conf
+36260973 hostname
+33729591 hosts
+  171267 hp
+34670113 idmapd.conf
+34668567 inittab
+33729592 inputrc
+18973705 insights-client
+17357902 iproute2
+18083576 iscsi
+33729569 issue
+50536130 issue.d
+33729570 issue.net
+35043933 kdump
+35043934 kdump.conf
+34769860 kernel
+34426403 krb5.conf
+17614830 krb5.conf.d
+36260979 ld.so.cache
+33758327 ld.so.conf
+17247264 ld.so.conf.d
+33829783 libaudit.conf
+  478156 libblockdev
+17537147 libibverbs.d
+33877137 libnl
+17544194 libpaper.d
+   10008 libreport
+34363112 libssh
+34669360 libuser.conf
+36260971 locale.conf
+36261707 localtime
+33877496 login.defs
+34669237 logrotate.conf
+   86932 logrotate.d
+34669631 lsm
+50331777 lvm
+34668966 machine-id
+33932833 magic
+36257194 mailcap
+35043935 makedumpfile.conf.sample
+36132461 man_db.conf
+ 1555888 mcelog
+36132231 microcode_ctl
+36257195 mime.types
+34982450 mke2fs.conf
+  394020 modprobe.d
+  478847 modules-load.d
+33729593 motd
+33729594 motd.d
+34668967 mtab
+51308597 multipath
+36133661 nanorc
+34545731 netconfig
+51308671 NetworkManager
+33729595 networks
+35102795 nfs.conf
+35102797 nfsmount.conf
+34312319 nftables
+34426398 nsswitch.conf
+33758328 nsswitch.conf.bak
+51785036 nvme
+18082858 openldap
+  171410 opt
+33729571 os-release
+  410068 ostree
+34899084 PackageKit
+51246793 pam.d
+33758441 papersize
+36267068 passwd
+33729588 passwd-
+36095801 pbm2ppa.conf
+36132452 pinforc
+  202112 pkcs11
+34312339 pkgconfig
+17210452 pki
+18315272 plymouth
+17210468 pm
+36095802 pnm2ppa.conf
+51249114 polkit-1
+33758571 popt.d
+33729597 printcap
+33729598 profile
+50536134 profile.d
+33729599 protocols
+  365145 pulse
+51785030 qemu-ga
+51246945 rc.d
+34668571 rc.local
+33729574 redhat-release
+34151926 request-key.conf
+17356659 request-key.d
+36261568 resolv.conf
+36095821 rhc
+17210449 rhsm
+33758329 rpc
+34669474 rpm
+36132616 rsyncd.conf
+34768247 rsyslog.conf
+  478258 rsyslog.d
+17210469 rwtab.d
+51249236 samba
+51266548 sane.d
+  394233 sasl2
+51246791 security
+  202502 selinux
+33729600 services
+34669535 sestatus.conf
+  767077 setroubleshoot
+17330273 sgml
+36267064 shadow
+34668568 shadow-
+33729602 shells
+33575719 skel
+36132397 smartmontools
+18973052 sos
+51385511 speech-dispatcher
+  457976 ssh
+51238878 ssl
+51312524 sssd
+33729609 statetab.d
+36267049 subgid
+33729604 subgid-
+36261696 subuid
+36260960 subuid-
+34768416 sudo.conf
+34768417 sudoers
+34768418 sudoers.d
+34768415 sudo-ldap.conf
+  171399 swid
+50536143 sysconfig
+34668572 sysctl.conf
+18082616 sysctl.d
+34668573 systemd
+33729575 system-release
+33729576 system-release-cpe
+50536497 terminfo
+18082618 tmpfiles.d
+34668979 tpm2-tss
+34982507 trusted-key.key
+18129740 udev
+51534850 udisks2
+36132131 updatedb.conf
+34856432 UPower
+34768755 usb_modeswitch.conf
+36260972 vconsole.conf
+34310770 vimrc
+36133659 virc
+35102648 vmware-tools
+51014650 vulkan
+36133618 wgetrc
+  796939 wireplumber
+51308573 wpa_supplicant
+50337763 X11
+33877446 xattr.conf
+  171412 xdg
+50987670 xml
+51780253 yum
+36095844 yum.conf
+  171403 yum.repos.d
+[student@192 ~]$ ls -i /etc/hosts
+33729591 /etc/hosts
+________________________________________________________________________
+[student@192 ~]$ echo "2️⃣1️⃣ Compare /etc/passwd file copy"
+2️⃣1️⃣ Compare /etc/passwd file copy
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ cp /etc/passwd ~/passwd_copy
+[student@192 ~]$ diff /etc/passwd ~/passwd_copy
+[student@192 ~]$ cmp /etc/passwd ~/passwd_copy
+[student@192 ~]$ nano ~/passwd_copy  
+[student@192 ~]$ diff /etc/passwd ~/passwd_copy
+0a1
+> #Just Modify file
+[student@192 ~]$ cmp /etc/passwd ~/passwd_copy
+/etc/passwd /home/student/passwd_copy differ: byte 1, line 1
+[student@192 ~]$ 
+_________________________________________________________________________
+
+[student@192 ~]$ echo "2️⃣2️⃣ Create a symbolic link in /boot"
+2️⃣2️⃣ Create a symbolic link in /boot
+[student@192 ~]$ 
+[student@192 ~]$ sudo ln -s /etc/passwd /boot/passwd_link
+[sudo] password for student: 
+ln: failed to create symbolic link '/boot/passwd_link': File exists
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ ls -l /boot/passwd_link
+lrwxrwxrwx. 1 root root 11 Apr  7 19:22 /boot/passwd_link -> /etc/passwd
+[student@192 ~]$ 
+[student@192 ~]$ cat /boot/passwd_link
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+polkitd:x:998:996:User for polkitd:/:/sbin/nologin
+tss:x:59:59:Account used for TPM access:/dev/null:/sbin/nologin
+avahi:x:70:70:Avahi mDNS/DNS-SD Stack:/var/run/avahi-daemon:/sbin/nologin
+rpc:x:32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin
+colord:x:997:993:User for colord:/var/lib/colord:/sbin/nologin
+clevis:x:996:992:Clevis Decryption Framework unprivileged user:/var/cache/clevis:/usr/sbin/nologin
+rtkit:x:172:172:RealtimeKit:/proc:/sbin/nologin
+sssd:x:995:991:User for sssd:/:/sbin/nologin
+geoclue:x:994:990:User for geoclue:/var/lib/geoclue:/sbin/nologin
+libstoragemgmt:x:993:989:daemon account for libstoragemgmt:/var/run/lsm:/sbin/nologin
+setroubleshoot:x:992:988:SELinux troubleshoot server:/var/lib/setroubleshoot:/sbin/nologin
+pipewire:x:991:986:PipeWire System Daemon:/var/run/pipewire:/sbin/nologin
+flatpak:x:990:985:User for flatpak system helper:/:/sbin/nologin
+gdm:x:42:42::/var/lib/gdm:/sbin/nologin
+cockpit-ws:x:989:984:User for cockpit web service:/nonexisting:/sbin/nologin
+cockpit-wsinstance:x:988:983:User for cockpit-ws instances:/nonexisting:/sbin/nologin
+gnome-initial-setup:x:987:982::/run/gnome-initial-setup/:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/sbin/nologin
+chrony:x:986:981::/var/lib/chrony:/sbin/nologin
+dnsmasq:x:985:980:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+systemd-oom:x:978:978:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+student:x:1000:1000:student:/home/student:/bin/bash
+AKRAM1:x:1002:1000::/home/AKRAM1:/bin/bash
+AKRAM:x:1003:1000::/home/AKRAM:/bin/bash
+user1:x:1004:1004::/home/user1:/bin/bash
+user2:x:1005:1005::/home/user2:/bin/bash
+user3:x:1006:1006::/home/user3:/bin/bash
+Ak:x:1007:1007:Ak Elgazzar:/home/Ak:/bin/bash
+akram:x:1008:1008:Akram Elgazzar:/home/akram:/bin/bash
+islam:x:1010:1010:Islam User:/home/islam:/bin/bash
+baduser:x:1011:1011:Bad User:/home/baduser:/bin/bash
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ readlink -f /boot/passwd_link
+/etc/passwd
+
+________________________________________________________________________________________
+(23)
+
+[akram@192 ~]$ ln /etc/passwd /boot/passwd_hard
+ln: failed to create hard link '/boot/passwd_hard' => '/etc/passwd': Invalid cross-device link
+[akram@192 ~]$ df -h /etc/passwd /boot
+Filesystem             Size  Used Avail Use% Mounted on
+/dev/mapper/rhel-root   17G  4.2G   13G  25% /
+/dev/nvme0n1p1        1014M  263M  752M  26% /boot
+[akram@192 ~]$ sudo ln -s /etc/passwd /boot/passwd_link 
+[sudo] password for akram: 
+ln: failed to create symbolic link '/boot/passwd_link': File exists
+[akram@192 ~]$ 
+[akram@192 ~]$ 
+[akram@192 ~]$ echo "verify"
+verify
+[akram@192 ~]$ ls -l /boot/passwd_link
+lrwxrwxrwx. 1 root root 11 Apr  7 19:22 /boot/passwd_link -> /etc/passwd
+[akram@192 ~]$ readlink -f /boot/passwd_link
+/etc/passwd
+[akram@192 ~]$ 
+[akram@192 ~]$ 
+[akram@192 ~]$ echo "recreate the link"
+recreate the link
+[akram@192 ~]$ sudo rm /boot/passwd_link
+[akram@192 ~]$ sudo ln -s /etc/passwd /boot/passwd_link
+[akram@192 ~]$ ls -l /boot/passwd_link  # Verify again
+lrwxrwxrwx. 1 root root 11 Apr  7 20:45 /boot/passwd_link -> /etc/passwd
+[akram@192 ~]$ 
+
+
+
+
+
+
+
+
+
+
