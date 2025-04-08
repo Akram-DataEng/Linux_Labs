@@ -1,11 +1,11 @@
-# Linux System Administration Tasks
+#Linux System Administration Tasks
 
-## Overview
+##Overview
 This document outlines essential Linux system administration tasks. Each section provides descriptions, relevant commands, and expected outputs.
 
 ---
 
-## 1. List All Running Processes and Save to a File
+##1. List All Running Processes and Save to a File
 
 ```bash
 echo "1- List all running processes and save to ~/processes.txt"
