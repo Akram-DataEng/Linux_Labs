@@ -1,0 +1,913 @@
+[root@localhost student]# echo "1- List all running processes and save to ~/processes.txt"
+1- List all running processes and save to ~/processes.txt
+[root@localhost student]# 
+[root@localhost student]# 
+[root@localhost student]# ps aux > ~/processes.txt
+[root@localhost student]# head -10 ~/processes.txt
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.9 172956 17220 ?        Ss   05:44   0:08 /usr/lib/systemd/systemd rhgb --switched-root --system --deserialize 31
+root           2  0.0  0.0      0     0 ?        S    05:44   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   05:44   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   05:44   0:00 [rcu_par_gp]
+root           6  0.0  0.0      0     0 ?        I<   05:44   0:00 [kworker/0:0H-events_highpri]
+root           9  0.0  0.0      0     0 ?        I<   05:44   0:00 [mm_percpu_wq]
+root          10  0.0  0.0      0     0 ?        S    05:44   0:00 [rcu_tasks_kthre]
+root          11  0.0  0.0      0     0 ?        S    05:44   0:00 [rcu_tasks_rude_]
+root          12  0.0  0.0      0     0 ?        S    05:44   0:00 [rcu_tasks_trace]
+[root@localhost student]# 
+[root@localhost student]# 
+[root@localhost student]# 
+_____________________________________________________________________________________________________
+
+[root@localhost student]# echo "2. Find the PID of the sshd service"
+2. Find the PID of the sshd service
+[root@localhost student]# 
+[root@localhost student]# 
+[root@localhost student]# pgrep sshd
+5346
+[root@localhost student]# ps aux | grep [s]shd
+root        5346  0.0  0.4  16064  8296 ?        Ss   08:34   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+[root@localhost student]# 
+[root@localhost student]# 
+__________________________________________________________________________________________________________________
+[root@localhost student]# echo "3. Run sleep 500 in the background, then kill it after 5 seconds"
+3. Run sleep 500 in the background, then kill it after 5 seconds
+[root@localhost student]# 
+[root@localhost student]# sleep 500 &
+[1] 6526
+[root@localhost student]# 
+[root@localhost student]# kill 6526
+[root@localhost student]# pgrep sleep
+3558
+[1]+  Terminated              sleep 500
+[root@localhost student]# 
+[root@localhost student]# 
+[root@localhost student]# 
+__________________________________________________________________________________________________________________
+[root@localhost student]# echo "4. Check if sshd is running, start and enable it if necessary"
+4. Check if sshd is running, start and enable it if necessary
+[root@localhost student]# 
+[root@localhost student]# systemctl status sshd
+● sshd.service - OpenSSH server daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor pres>
+     Active: active (running) since Tue 2025-04-08 08:34:11 AST; 54min ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 5346 (sshd)
+      Tasks: 1 (limit: 10804)
+     Memory: 1.7M
+        CPU: 70ms
+     CGroup: /system.slice/sshd.service
+             └─5346 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+Apr 08 08:34:11 localhost.localdomain systemd[1]: Starting OpenSSH server daemo>
+Apr 08 08:34:11 localhost.localdomain sshd[5346]: Server listening on 0.0.0.0 p>
+Apr 08 08:34:11 localhost.localdomain sshd[5346]: Server listening on :: port 2>
+Apr 08 08:34:11 localhost.localdomain systemd[1]: Started OpenSSH server daemon.
+[root@localhost student]# 
+
+_______________________________________________________________________________________
+
+[root@localhost student]# echo "Restart the cron Service"
+Restart the cron Service
+[root@localhost student]# sudo systemctl restart crond
+[root@localhost student]# sudo systemctl status crond
+● crond.service - Command Scheduler
+     Loaded: loaded (/usr/lib/systemd/system/crond.service; enabled; vendor pre>
+     Active: active (running) since Tue 2025-04-08 09:32:19 AST; 14s ago
+   Main PID: 6603 (crond)
+      Tasks: 1 (limit: 10804)
+     Memory: 984.0K
+        CPU: 31ms
+     CGroup: /system.slice/crond.service
+             └─6603 /usr/sbin/crond -n
+
+Apr 08 09:32:19 localhost.localdomain systemd[1]: Started Command Scheduler.
+Apr 08 09:32:19 localhost.localdomain crond[6603]: (CRON) STARTUP (1.5.7)
+Apr 08 09:32:19 localhost.localdomain crond[6603]: (CRON) INFO (Syslog will be >
+Apr 08 09:32:19 localhost.localdomain crond[6603]: (CRON) INFO (RANDOM_DELAY wi>
+Apr 08 09:32:19 localhost.localdomain crond[6603]: (CRON) INFO (running with in>
+Apr 08 09:32:19 localhost.localdomain crond[6603]: (CRON) INFO (@reboot jobs wi>
+[root@localhost student]# pgrep crond
+6603
+[root@localhost student]# 
+
+
+_____________________________________________________________________________________________
+
+
+[root@localhost student]# echo "7. Create a compressed tarball archive.tar.gz of var-log and save it in your home directory"
+7. Create a compressed tarball archive.tar.gz of var-log and save it in your home directory
+[root@localhost student]# 
+[root@localhost student]# cd ~
+[root@localhost ~]# sudo tar -cvzf ~/archive.tar.gz /var/log
+tar: Removing leading `/' from member names
+/var/log/
+/var/log/README
+/var/log/tallylog
+/var/log/private/
+/var/log/wtmp
+/var/log/lastlog
+/var/log/samba/
+/var/log/samba/old/
+/var/log/audit/
+/var/log/audit/audit.log
+/var/log/vmware-network.4.log
+/var/log/sssd/
+/var/log/sssd/sssd_kcm.log-20250405.gz
+/var/log/sssd/sssd_kcm.log-20250406
+/var/log/sssd/sssd_kcm.log
+/var/log/speech-dispatcher/
+/var/log/cups/
+/var/log/cups/error_log
+/var/log/cups/access_log
+/var/log/cups/page_log
+/var/log/rhsm/
+/var/log/rhsm/rhsmcertd.log
+/var/log/rhsm/rhsm.log
+/var/log/rhsm/rhsmcertd.log-20241201
+/var/log/rhsm/rhsm.log-20241201
+/var/log/rhsm/rhsmcertd.log-20241208
+/var/log/rhsm/rhsm.log-20241208
+/var/log/rhsm/rhsmcertd.log-20250405
+/var/log/rhsm/rhsm.log-20250405
+/var/log/rhsm/rhsmcertd.log-20250406
+/var/log/rhsm/rhsm.log-20250406
+/var/log/insights-client/
+/var/log/gdm/
+/var/log/chrony/
+/var/log/qemu-ga/
+/var/log/anaconda/
+/var/log/anaconda/anaconda.log
+/var/log/anaconda/syslog
+/var/log/anaconda/X.log
+/var/log/anaconda/program.log
+/var/log/anaconda/packaging.log
+/var/log/anaconda/storage.log
+/var/log/anaconda/lvm.log
+/var/log/anaconda/dnf.librepo.log
+/var/log/anaconda/hawkey.log
+/var/log/anaconda/dbus.log
+/var/log/anaconda/ks-script-126lyj92.log
+/var/log/anaconda/ks-script-3eermlax.log
+/var/log/anaconda/ks-script-rh7ovoda.log
+/var/log/anaconda/journal.log
+/var/log/anaconda/lorax-packages.log
+/var/log/boot.log
+/var/log/vmware-vgauthsvc.log.0
+/var/log/vmware-vmtoolsd-root.log
+/var/log/vmware-vmsvc-root.log
+/var/log/firewalld
+/var/log/kdump.log
+/var/log/dnf.log
+/var/log/dnf.librepo.log
+/var/log/dnf.rpm.log
+/var/log/vmware-network.log
+/var/log/boot.log-20250408
+/var/log/btmp-20250405
+/var/log/cron-20250406
+/var/log/cron
+/var/log/maillog
+/var/log/secure
+/var/log/vmware-network.3.log
+/var/log/cron-20241201
+/var/log/maillog-20241201
+/var/log/messages-20241201
+/var/log/secure-20241201
+/var/log/spooler-20241201
+/var/log/maillog-20250405
+/var/log/boot.log-20250406
+/var/log/vmware-network.6.log
+/var/log/vmware-network.2.log
+/var/log/btmp
+/var/log/spooler-20250405
+/var/log/spooler-20250406
+/var/log/vmware-network.8.log
+/var/log/vmware-network.7.log
+/var/log/messages-20250406
+/var/log/boot.log-20250407
+/var/log/boot.log-20241213
+/var/log/vmware-network.1.log
+/var/log/boot.log-20250405
+/var/log/cron-20250405
+/var/log/secure-20250405
+/var/log/messages
+/var/log/vmware-network.5.log
+/var/log/boot.log-20241208
+/var/log/cron-20241208
+/var/log/maillog-20241208
+/var/log/messages-20241208
+/var/log/secure-20241208
+/var/log/spooler-20241208
+/var/log/vmware-network.9.log
+/var/log/secure-20250406
+/var/log/boot.log-20241209
+/var/log/maillog-20250406
+/var/log/spooler
+/var/log/messages-20250405
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# ls -lh ~/archive.tar.gz
+-rw-r--r--. 1 root root 1.7M Apr  8 09:38 /root/archive.tar.gz
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# mkdir ~/test_extract
+[root@localhost ~]# tar -xvzf ~/archive.tar.gz -C ~/test_extract
+var/log/
+var/log/README
+var/log/tallylog
+var/log/private/
+var/log/wtmp
+var/log/lastlog
+var/log/samba/
+var/log/samba/old/
+var/log/audit/
+var/log/audit/audit.log
+var/log/vmware-network.4.log
+var/log/sssd/
+var/log/sssd/sssd_kcm.log-20250405.gz
+var/log/sssd/sssd_kcm.log-20250406
+var/log/sssd/sssd_kcm.log
+var/log/speech-dispatcher/
+var/log/cups/
+var/log/cups/error_log
+var/log/cups/access_log
+var/log/cups/page_log
+var/log/rhsm/
+var/log/rhsm/rhsmcertd.log
+var/log/rhsm/rhsm.log
+var/log/rhsm/rhsmcertd.log-20241201
+var/log/rhsm/rhsm.log-20241201
+var/log/rhsm/rhsmcertd.log-20241208
+var/log/rhsm/rhsm.log-20241208
+var/log/rhsm/rhsmcertd.log-20250405
+var/log/rhsm/rhsm.log-20250405
+var/log/rhsm/rhsmcertd.log-20250406
+var/log/rhsm/rhsm.log-20250406
+var/log/insights-client/
+var/log/gdm/
+var/log/chrony/
+var/log/qemu-ga/
+var/log/anaconda/
+var/log/anaconda/anaconda.log
+var/log/anaconda/syslog
+var/log/anaconda/X.log
+var/log/anaconda/program.log
+var/log/anaconda/packaging.log
+var/log/anaconda/storage.log
+var/log/anaconda/lvm.log
+var/log/anaconda/dnf.librepo.log
+var/log/anaconda/hawkey.log
+var/log/anaconda/dbus.log
+var/log/anaconda/ks-script-126lyj92.log
+var/log/anaconda/ks-script-3eermlax.log
+var/log/anaconda/ks-script-rh7ovoda.log
+var/log/anaconda/journal.log
+var/log/anaconda/lorax-packages.log
+var/log/boot.log
+var/log/vmware-vgauthsvc.log.0
+var/log/vmware-vmtoolsd-root.log
+var/log/vmware-vmsvc-root.log
+var/log/firewalld
+var/log/kdump.log
+var/log/dnf.log
+var/log/dnf.librepo.log
+var/log/dnf.rpm.log
+var/log/vmware-network.log
+var/log/boot.log-20250408
+var/log/btmp-20250405
+var/log/cron-20250406
+var/log/cron
+var/log/maillog
+var/log/secure
+var/log/vmware-network.3.log
+var/log/cron-20241201
+var/log/maillog-20241201
+var/log/messages-20241201
+var/log/secure-20241201
+var/log/spooler-20241201
+var/log/maillog-20250405
+var/log/boot.log-20250406
+var/log/vmware-network.6.log
+var/log/vmware-network.2.log
+var/log/btmp
+var/log/spooler-20250405
+var/log/spooler-20250406
+var/log/vmware-network.8.log
+var/log/vmware-network.7.log
+var/log/messages-20250406
+var/log/boot.log-20250407
+var/log/boot.log-20241213
+var/log/vmware-network.1.log
+var/log/boot.log-20250405
+var/log/cron-20250405
+var/log/secure-20250405
+var/log/messages
+var/log/vmware-network.5.log
+var/log/boot.log-20241208
+var/log/cron-20241208
+var/log/maillog-20241208
+var/log/messages-20241208
+var/log/secure-20241208
+var/log/spooler-20241208
+var/log/vmware-network.9.log
+var/log/secure-20250406
+var/log/boot.log-20241209
+var/log/maillog-20250406
+var/log/spooler
+var/log/messages-20250405
+[root@localhost ~]# ls ~/test_extract/var/log
+anaconda           gdm                secure-20250406
+audit              insights-client    speech-dispatcher
+boot.log           kdump.log          spooler
+boot.log-20241208  lastlog            spooler-20241201
+boot.log-20241209  maillog            spooler-20241208
+boot.log-20241213  maillog-20241201   spooler-20250405
+boot.log-20250405  maillog-20241208   spooler-20250406
+boot.log-20250406  maillog-20250405   sssd
+boot.log-20250407  maillog-20250406   tallylog
+boot.log-20250408  messages           vmware-network.1.log
+btmp               messages-20241201  vmware-network.2.log
+btmp-20250405      messages-20241208  vmware-network.3.log
+chrony             messages-20250405  vmware-network.4.log
+cron               messages-20250406  vmware-network.5.log
+cron-20241201      private            vmware-network.6.log
+cron-20241208      qemu-ga            vmware-network.7.log
+cron-20250405      README             vmware-network.8.log
+cron-20250406      rhsm               vmware-network.9.log
+cups               samba              vmware-network.log
+dnf.librepo.log    secure             vmware-vgauthsvc.log.0
+dnf.log            secure-20241201    vmware-vmsvc-root.log
+dnf.rpm.log        secure-20241208    vmware-vmtoolsd-root.log
+firewalld          secure-20250405    wtmp
+[root@localhost ~]# 
+
+
+________________________________________________________________________________
+
+[root@localhost ~]# echo "8.Extract the tarball into~/logs_backup"
+8.Extract the tarball into~/logs_backup
+[root@localhost ~]# 
+[root@localhost ~]# mkdir -p ~/logs_backup
+[root@localhost ~]# tar -xvzf ~/archive.tar.gz -C ~/logs_backup/
+var/log/
+var/log/README
+var/log/tallylog
+var/log/private/
+var/log/wtmp
+var/log/lastlog
+var/log/samba/
+var/log/samba/old/
+var/log/audit/
+var/log/audit/audit.log
+var/log/vmware-network.4.log
+var/log/sssd/
+var/log/sssd/sssd_kcm.log-20250405.gz
+var/log/sssd/sssd_kcm.log-20250406
+var/log/sssd/sssd_kcm.log
+var/log/speech-dispatcher/
+var/log/cups/
+var/log/cups/error_log
+var/log/cups/access_log
+var/log/cups/page_log
+var/log/rhsm/
+var/log/rhsm/rhsmcertd.log
+var/log/rhsm/rhsm.log
+var/log/rhsm/rhsmcertd.log-20241201
+var/log/rhsm/rhsm.log-20241201
+var/log/rhsm/rhsmcertd.log-20241208
+var/log/rhsm/rhsm.log-20241208
+var/log/rhsm/rhsmcertd.log-20250405
+var/log/rhsm/rhsm.log-20250405
+var/log/rhsm/rhsmcertd.log-20250406
+var/log/rhsm/rhsm.log-20250406
+var/log/insights-client/
+var/log/gdm/
+var/log/chrony/
+var/log/qemu-ga/
+var/log/anaconda/
+var/log/anaconda/anaconda.log
+var/log/anaconda/syslog
+var/log/anaconda/X.log
+var/log/anaconda/program.log
+var/log/anaconda/packaging.log
+var/log/anaconda/storage.log
+var/log/anaconda/lvm.log
+var/log/anaconda/dnf.librepo.log
+var/log/anaconda/hawkey.log
+var/log/anaconda/dbus.log
+var/log/anaconda/ks-script-126lyj92.log
+var/log/anaconda/ks-script-3eermlax.log
+var/log/anaconda/ks-script-rh7ovoda.log
+var/log/anaconda/journal.log
+var/log/anaconda/lorax-packages.log
+var/log/boot.log
+var/log/vmware-vgauthsvc.log.0
+var/log/vmware-vmtoolsd-root.log
+var/log/vmware-vmsvc-root.log
+var/log/firewalld
+var/log/kdump.log
+var/log/dnf.log
+var/log/dnf.librepo.log
+var/log/dnf.rpm.log
+var/log/vmware-network.log
+var/log/boot.log-20250408
+var/log/btmp-20250405
+var/log/cron-20250406
+var/log/cron
+var/log/maillog
+var/log/secure
+var/log/vmware-network.3.log
+var/log/cron-20241201
+var/log/maillog-20241201
+var/log/messages-20241201
+var/log/secure-20241201
+var/log/spooler-20241201
+var/log/maillog-20250405
+var/log/boot.log-20250406
+var/log/vmware-network.6.log
+var/log/vmware-network.2.log
+var/log/btmp
+var/log/spooler-20250405
+var/log/spooler-20250406
+var/log/vmware-network.8.log
+var/log/vmware-network.7.log
+var/log/messages-20250406
+var/log/boot.log-20250407
+var/log/boot.log-20241213
+var/log/vmware-network.1.log
+var/log/boot.log-20250405
+var/log/cron-20250405
+var/log/secure-20250405
+var/log/messages
+var/log/vmware-network.5.log
+var/log/boot.log-20241208
+var/log/cron-20241208
+var/log/maillog-20241208
+var/log/messages-20241208
+var/log/secure-20241208
+var/log/spooler-20241208
+var/log/vmware-network.9.log
+var/log/secure-20250406
+var/log/boot.log-20241209
+var/log/maillog-20250406
+var/log/spooler
+var/log/messages-20250405
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# ls ~/logs_backup/var/log/
+anaconda           gdm                secure-20250406
+audit              insights-client    speech-dispatcher
+boot.log           kdump.log          spooler
+boot.log-20241208  lastlog            spooler-20241201
+boot.log-20241209  maillog            spooler-20241208
+boot.log-20241213  maillog-20241201   spooler-20250405
+boot.log-20250405  maillog-20241208   spooler-20250406
+boot.log-20250406  maillog-20250405   sssd
+boot.log-20250407  maillog-20250406   tallylog
+boot.log-20250408  messages           vmware-network.1.log
+btmp               messages-20241201  vmware-network.2.log
+btmp-20250405      messages-20241208  vmware-network.3.log
+chrony             messages-20250405  vmware-network.4.log
+cron               messages-20250406  vmware-network.5.log
+cron-20241201      private            vmware-network.6.log
+cron-20241208      qemu-ga            vmware-network.7.log
+cron-20250405      README             vmware-network.8.log
+cron-20250406      rhsm               vmware-network.9.log
+cups               samba              vmware-network.log
+dnf.librepo.log    secure             vmware-vgauthsvc.log.0
+dnf.log            secure-20241201    vmware-vmsvc-root.log
+dnf.rpm.log        secure-20241208    vmware-vmtoolsd-root.log
+firewalld          secure-20250405    wtmp
+[root@localhost ~]# 
+
+___________________________________________________________________________
+[root@localhost ~]# echo "9-create a non-compressed tarball"
+9-create a non-compressed tarball
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# sudo tar -cvf /tmp/archive.tar /etc/ssh
+tar: Removing leading `/' from member names
+/etc/ssh/
+/etc/ssh/moduli
+/etc/ssh/ssh_config
+/etc/ssh/ssh_config.d/
+/etc/ssh/ssh_config.d/50-redhat.conf
+/etc/ssh/sshd_config
+/etc/ssh/sshd_config.d/
+/etc/ssh/sshd_config.d/50-redhat.conf
+/etc/ssh/sshd_config.d/01-permitrootlogin.conf
+/etc/ssh/ssh_host_ed25519_key
+/etc/ssh/ssh_host_ed25519_key.pub
+/etc/ssh/ssh_host_ecdsa_key
+/etc/ssh/ssh_host_ecdsa_key.pub
+/etc/ssh/ssh_host_rsa_key
+/etc/ssh/ssh_host_rsa_key.pub
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# ls -lh /tmp/archive.tar
+-rw-r--r--. 1 root root 590K Apr  8 16:34 /tmp/archive.tar
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# tar -tvf /tmp/archive.tar
+drwxr-xr-x root/root         0 2023-03-28 03:18 etc/ssh/
+-rw-r--r-- root/root    578094 2022-02-22 08:41 etc/ssh/moduli
+-rw-r--r-- root/root      1921 2022-02-22 08:41 etc/ssh/ssh_config
+drwxr-xr-x root/root         0 2023-03-28 03:12 etc/ssh/ssh_config.d/
+-rw-r--r-- root/root       581 2022-02-22 08:42 etc/ssh/ssh_config.d/50-redhat.conf
+-rw------- root/root      3669 2022-02-22 08:41 etc/ssh/sshd_config
+drwx------ root/root         0 2023-03-28 03:16 etc/ssh/sshd_config.d/
+-rw------- root/root       719 2022-02-22 08:42 etc/ssh/sshd_config.d/50-redhat.conf
+-rw-r--r-- root/root       141 2023-03-28 03:16 etc/ssh/sshd_config.d/01-permitrootlogin.conf
+-rw-r----- root/ssh_keys   387 2023-03-28 03:18 etc/ssh/ssh_host_ed25519_key
+-rw-r--r-- root/root        82 2023-03-28 03:18 etc/ssh/ssh_host_ed25519_key.pub
+-rw-r----- root/ssh_keys   492 2023-03-28 03:18 etc/ssh/ssh_host_ecdsa_key
+-rw-r--r-- root/root       162 2023-03-28 03:18 etc/ssh/ssh_host_ecdsa_key.pub
+-rw-r----- root/ssh_keys  2578 2023-03-28 03:18 etc/ssh/ssh_host_rsa_key
+-rw-r--r-- root/root       554 2023-03-28 03:18 etc/ssh/ssh_host_rsa_key.pub
+[root@localhost ~]# 
+
+
+_______________________________________________________________________________________________
+[root@localhost ~]# echo "10- compress procesess.text using gzip"
+10- compress procesess.text using gzip
+[root@localhost ~]# 
+[root@localhost ~]# gzip ~/processes.txt
+[root@localhost ~]# ls -lh ~/processes.txt.gz
+-rw-r--r--. 1 root root 5.2K Apr  8 09:25 /root/processes.txt.gz
+[root@localhost ~]# 
+[root@localhost ~]# zcat ~/processes.txt.gz | head -10
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.9 172956 17220 ?        Ss   05:44   0:08 /usr/lib/systemd/systemd rhgb --switched-root --system --deserialize 31
+root           2  0.0  0.0      0     0 ?        S    05:44   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   05:44   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   05:44   0:00 [rcu_par_gp]
+root           6  0.0  0.0      0     0 ?        I<   05:44   0:00 [kworker/0:0H-events_highpri]
+root           9  0.0  0.0      0     0 ?        I<   05:44   0:00 [mm_percpu_wq]
+root          10  0.0  0.0      0     0 ?        S    05:44   0:00 [rcu_tasks_kthre]
+root          11  0.0  0.0      0     0 ?        S    05:44   0:00 [rcu_tasks_rude_]
+root          12  0.0  0.0      0     0 ?        S    05:44   0:00 [rcu_tasks_trace]
+[root@localhost ~]# 
+_______________________________________________________________________________________________________
+
+[root@localhost ~]# echo "decompress processes.txt.gz "
+decompress processes.txt.gz 
+[root@localhost ~]# 
+[root@localhost ~]# gunzip ~/processes.txt.gz
+[root@localhost ~]# 
+[root@localhost ~]# ls -lh ~/processes.txt.gz
+ls: cannot access '/root/processes.txt.gz': No such file or directory
+[root@localhost ~]# 
+[root@localhost ~]# ls -lh ~/processes.txt
+-rw-r--r--. 1 root root 27K Apr  8 09:25 /root/processes.txt
+[root@localhost ~]# 
+___________________________________________________________________________________________________________
+
+[root@localhost ~]# echo "12- install htop process viewer) using your package manager"
+12- install htop process viewer) using your package manager
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# sudo dnf install htop -y
+Updating Subscription Management repositories.
+Unable to read consumer identity
+
+This system is not registered with an entitlement server. You can use subscription-manager to register.
+
+Error: There are no enabled repositories in "/etc/yum.repos.d", "/etc/yum/repos.d", "/etc/distro.repos.d".
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# htop
+bash: htop: command not found...
+Similar command is: 'top'
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# sudo subscription-manager register
+Registering to: subscription.rhsm.redhat.com:443/subscription
+Username: student
+Password: 
+Invalid username or password. To create a login, please visit https://www.redhat.com/wapps/ugc/register.html (HTTP error code 401: Unauthorized)
+[root@localhost ~]# 
+_____________________________________________________________________________________________________________________-
+
+[root@localhost ~]# echo "13- search for the nginx or httpd package using your package manager without installing it"
+13- search for the nginx or httpd package using your package manager without installing it
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# sudo dnf search nginx
+Updating Subscription Management repositories.
+Unable to read consumer identity
+
+This system is not registered with an entitlement server. You can use subscription-manager to register.
+
+No matches found.
+[root@localhost ~]# sudo dnf search httpd
+Updating Subscription Management repositories.
+Unable to read consumer identity
+
+This system is not registered with an entitlement server. You can use subscription-manager to register.
+
+No matches found.
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# sudo dnf repolist
+Updating Subscription Management repositories.
+Unable to read consumer identity
+
+This system is not registered with an entitlement server. You can use subscription-manager to register.
+
+No repositories available
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# echo "my system isn’t able to access package repositories due to subscription and repository issues"
+my system isn’t able to access package repositories due to subscription and repository issues
+[root@localhost ~]# 
+_______________________________________________________________________________________________________________
+
+[root@localhost ~]# echo "14- remove and reinstall vim using your package manager"
+14- remove and reinstall vim using your package manager
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# which vim
+/bin/vim
+[root@localhost ~]# sudo dnf remove vim -y
+Updating Subscription Management repositories.
+Unable to read consumer identity
+
+This system is not registered with an entitlement server. You can use subscription-manager to register.
+
+Dependencies resolved.
+================================================================================
+ Package             Arch        Version                  Repository       Size
+================================================================================
+Removing:
+ vim-enhanced        x86_64      2:8.2.2637-15.el9        @AppStream      3.8 M
+Removing unused dependencies:
+ gpm-libs            x86_64      1.20.7-29.el9            @AppStream       28 k
+ vim-common          x86_64      2:8.2.2637-15.el9        @AppStream       30 M
+ vim-filesystem      noarch      2:8.2.2637-15.el9        @anaconda        40  
+
+Transaction Summary
+================================================================================
+Remove  4 Packages
+
+Freed space: 34 M
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                        1/1 
+  Erasing          : vim-enhanced-2:8.2.2637-15.el9.x86_64                  1/4 
+  Erasing          : vim-common-2:8.2.2637-15.el9.x86_64                    2/4 
+  Erasing          : vim-filesystem-2:8.2.2637-15.el9.noarch                3/4 
+  Erasing          : gpm-libs-1.20.7-29.el9.x86_64                          4/4 
+  Running scriptlet: gpm-libs-1.20.7-29.el9.x86_64                          4/4 
+  Verifying        : gpm-libs-1.20.7-29.el9.x86_64                          1/4 
+  Verifying        : vim-common-2:8.2.2637-15.el9.x86_64                    2/4 
+  Verifying        : vim-enhanced-2:8.2.2637-15.el9.x86_64                  3/4 
+  Verifying        : vim-filesystem-2:8.2.2637-15.el9.noarch                4/4 
+Installed products updated.
+
+Removed:
+  gpm-libs-1.20.7-29.el9.x86_64         vim-common-2:8.2.2637-15.el9.x86_64    
+  vim-enhanced-2:8.2.2637-15.el9.x86_64 vim-filesystem-2:8.2.2637-15.el9.noarch
+
+Complete!
+[root@localhost ~]# sudo dnf install vim -y
+Updating Subscription Management repositories.
+Unable to read consumer identity
+
+This system is not registered with an entitlement server. You can use subscription-manager to register.
+
+Error: There are no enabled repositories in "/etc/yum.repos.d", "/etc/yum/repos.d", "/etc/distro.repos.d".
+[root@localhost ~]# vim --version
+__________________________________________________________________________________________________________________
+15-use wget to download the Linux kernel source from the official Linux Kernel Archives.
+
+[root@192 ~]# wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.14.tar.xz
+--2025-04-08 17:29:41--  https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.14.tar.xz
+Resolving cdn.kernel.org (cdn.kernel.org)... 146.75.53.176, 2a04:4e42:7d::432
+Connecting to cdn.kernel.org (cdn.kernel.org)|146.75.53.176|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 149408504 (142M) [application/x-xz]
+Saving to: ‘linux-6.14.tar.xz.1’
+
+linux-6.14.tar.xz.1   100%[====================>] 871.28K   244KB/s    eta 9m 54s ^C
+[root@192 ~]# ls -lh linux-6.14.tar.xz
+
+_____________________________________________________________________________________________
+16. Use `curl` to fetch **Google’s homepage** and save it as `google.html`.
+
+student@192 root]$ sudo touch google.html
+[sudo] password for student: 
+[student@192 root]$ sudo curl -o google.html https://www.google.com
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 19337    0 19337    0     0  26634      0 --:--:-- --:--:-- --:--:-- 26634
+[student@192 root]$ cd ~
+[student@192 ~]$ curl -o google.html https://www.google.com
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 19311    0 19311    0     0  28908      0 --:--:-- --:--:-- --:--:-- 28908
+[student@192 ~]$ ls -ld $(pwd)
+drwxr-xr-x. 22 student student 4096 Apr  8 17:36 /home/student
+[student@192 ~]$ ls -ld $(pwd)
+drwxr-xr-x. 22 student student 4096 Apr  8 17:36 /home/student
+[student@192 ~]$ 
+[student@192 ~]$ 
+[student@192 ~]$ curl -o ~/Downloads/google.html https://www.google.com
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 19280    0 19280    0     0  31096      0 --:--:-- --:--:-- --:--:-- 31046
+[student@192 ~]$ ls -lh google.html
+-rw-rw-r--. 1 student student 19K Apr  8 17:36 google.html
+[student@192 ~]$ 
+[student@192 ~]$ head -10 google.html
+<!doctype html><html dir="rtl" itemscope="" itemtype="http://schema.org/WebPage" lang="ar">
+<head><meta content="text/html; charset=UTF-8" 
+http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image">
+<title>Google</title><script nonce="MPtoW2I7pI0bwlR_Xvaz_Q">
+(function(){var _g={kEI:'-pb1Z9-jIO-tkdUPwMvd0Ac',kEXPI:'0,202792,3497520,637,435,
+
+
+
+_______________________________________________________________________________________________
+17. **Create a new VM** (e.g., VirtualBox/Cloud instance), add a user to the `sudoers` group, and run `apt update && apt upgrade`.
+
+
+[student@192 ~]$ sudo adduser akram
+[student@192 ~]$ sudo usermod -aG sudo akram
+[student@192 ~]$ groups akram
+[student@192 ~]$ sudo apt update && sudo apt upgrade -y
+[student@192 ~]$ sudo dnf update -y
+_______________________________________________________________________________________________
+18. **Generate an SSH key pair** using `ssh-keygen`.  
+
+root@192 student]# ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa
+Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /root/.ssh/id_rsa
+Your public key has been saved in /root/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:O43zcLAMalXcNgEaNcgEWvV0XyBjkUCWMgoAVI4OWpM root@192.168.1.17
+The key's randomart image is:
++---[RSA 4096]----+
+|=o..o=++O+Bo...  |
+|  ++  =B.=.= .   |
+|..Eo ..o+ + .    |
+|+. ..  . . .     |
+|..    o S        |
+|     o o *       |
+|    o   O o      |
+|   .     *       |
+|          .      |
++----[SHA256]-----+
+[root@192 student]# ls -lh ~/.ssh/id_rsa*
+-rw-------. 1 root root 3.4K Apr  8 17:57 /root/.ssh/id_rsa
+-rw-r--r--. 1 root root  743 Apr  8 17:57 /root/.ssh/id_rsa.pub
+[root@192 student]# 
+[root@192 student]# 
+[root@192 student]# ssh-copy-id user@remote-server-ip
+/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/root/.ssh/id_rsa.pub"
+/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+
+/bin/ssh-copy-id: ERROR: ssh: Could not resolve hostname remote-server-ip: Name or service not known
+
+[root@192 student]# ssh user@remote-server-ip
+ssh: Could not resolve hostname remote-server-ip: Name or service not known
+[root@192 student]# 
+------------------------------------
+_____________________________________________________________________________________
+19. **Copy your public key** to the remote server: 
+
+[root@192 student]# 
+[root@192 student]# 
+[root@192 student]# sudo systemctl status sshd
+● sshd.service - OpenSSH server daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor pres>
+     Active: active (running) since Tue 2025-04-08 08:34:11 AST; 9h ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 5346 (sshd)
+      Tasks: 1 (limit: 10804)
+     Memory: 1.6M
+        CPU: 70ms
+     CGroup: /system.slice/sshd.service
+             └─5346 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+Apr 08 08:34:11 localhost.localdomain systemd[1]: Starting OpenSSH server daemo>
+Apr 08 08:34:11 localhost.localdomain sshd[5346]: Server listening on 0.0.0.0 p>
+Apr 08 08:34:11 localhost.localdomain sshd[5346]: Server listening on :: port 2>
+Apr 08 08:34:11 localhost.localdomain systemd[1]: Started OpenSSH server daemon.
+[root@192 student]# 
+[root@192 student]# 
+[root@192 student]# sudo systemctl start sshd
+[root@192 student]# sudo systemctl enable sshd
+[root@192 student]# 
+[root@192 student]# 
+[root@192 student]# ssh-copy-id user@192.168.1.100
+/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/root/.ssh/id_rsa.pub"
+/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+
+/bin/ssh-copy-id: ERROR: ssh: connect to host 192.168.1.100 port 22: No route to host
+
+[root@192 student]# cat ~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCz0Ln8RJlg8lYvEoPlCySW0N3imlSOISMR4/fLavz2iM0qE2LU5jBUsdtPKLMJHFU0yCdNCZexrf3eBLcsVIL6IHPX6f4FYNsmAacnjldcuCj9jrq/w9PXkED+dI7T3VjSp37nPRVcYUWjAb7YInEHpQYGFfFHfo8h6qVAyxbynY2UwoqK3DfuGNQ9b+J/t+La43+xJIjZgZ0qqQHfar/qaIHVmdPW++txxIgVm/OX4KQsfvLgkJ9GxLjsBpSp1ezLK4u947DergFKzba47Q692gbNWLmJZY487NiHmK3yZHzDu3Et0EPoshc+s4pWk0rbt8aJ+JqBu0ydyoIVK4kFegyvbI0k4mjRQ4JnreODuPzr4pMufbV/b0kE3i1Chi2e0vGIUrGkUZ/C3o0SiTHJEiAyZVk531tZxL97OMHkr72iCOS5l8+8gYaMNyVxYnaKD6TV6103iTBysZzycAazGK2WPPThDdcXiE5P/epe/35zazXAHTqjoXL9xrfmK3p1o4a8iEP2SRdGnlDhKzA2nva4ERhcEyhueWKH58vSqmpehx/hUseFasyVA7e+p/znPhEhwpDINQUngSySXIHMn7sWAQaGAp+oArV9YU/YIREpzSGZgBYmqq2LKFAhSDlNjstgkM1RvO2W7w1D4qCgrdMjnBIBKXmRu4TfmSaXVQ== root@192.168.1.17
+[root@192 student]# 
+[root@192 student]# 
+[root@192 student]# 
+[root@192 student]# ~/.ssh/authorized_keys
+
+
+____________________________________________________________________________________________
+20. **SSH into the server** and verify with `hostname`.
+
+
+
+root@192 student]# ssh user@server_ip
+
+[root@192 student]# hostname
+192.168.1.17
+[root@192 student]# hostnamectl
+   Static hostname: n/a                                     
+Transient hostname: 192.168.1.17
+         Icon name: computer-vm
+           Chassis: vm 🖴
+        Machine ID: dc70f37b46ce40bfb7c380e3fc2a4613
+           Boot ID: bb7bcab40e08477a8b2964c441c01802
+    Virtualization: vmware
+  Operating System: Red Hat Enterprise Linux 9.0 (Plow)     
+       CPE OS Name: cpe:/o:redhat:enterprise_linux:9::baseos
+            Kernel: Linux 5.14.0-70.22.1.el9_0.x86_64
+      Architecture: x86-64
+   Hardware Vendor: VMware, Inc.
+    Hardware Model: VMware Virtual Platform
+[root@192 student]# ping -c 4 server_ip
+ping: server_ip: Name or service not known
+[root@192 student]# sudo systemctl status sshd
+● sshd.service - OpenSSH server daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor pres>
+     Active: active (running) since Tue 2025-04-08 08:34:11 AST; 9h ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 5346 (sshd)
+      Tasks: 1 (limit: 10804)
+     Memory: 1.6M
+        CPU: 70ms
+     CGroup: /system.slice/sshd.service
+             └─5346 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+Apr 08 08:34:11 localhost.localdomain systemd[1]: Starting OpenSSH server daemo>
+Apr 08 08:34:11 localhost.localdomain sshd[5346]: Server listening on 0.0.0.0 p>
+Apr 08 08:34:11 localhost.localdomain sshd[5346]: Server listening on :: port 2>
+Apr 08 08:34:11 localhost.localdomain systemd[1]: Started OpenSSH server daemon.
+[root@192 student]# sudo firewall-cmd --list-services
+cockpit dhcpv6-client ssh
+[root@192 student]# sudo firewall-cmd --list-services
+cockpit dhcpv6-client ssh
+[root@192 student]# cat ~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCz0Ln8RJlg8lYvEoPlCySW0N3imlSOISMR4/fLavz2iM0qE2LU5jBUsdtPKLMJHFU0yCdNCZexrf3eBLcsVIL6IHPX6f4FYNsmAacnjldcuCj9jrq/w9PXkED+dI7T3VjSp37nPRVcYUWjAb7YInEHpQYGFfFHfo8h6qVAyxbynY2UwoqK3DfuGNQ9b+J/t+La43+xJIjZgZ0qqQHfar/qaIHVmdPW++txxIgVm/OX4KQsfvLgkJ9GxLjsBpSp1ezLK4u947DergFKzba47Q692gbNWLmJZY487NiHmK3yZHzDu3Et0EPoshc+s4pWk0rbt8aJ+JqBu0ydyoIVK4kFegyvbI0k4mjRQ4JnreODuPzr4pMufbV/b0kE3i1Chi2e0vGIUrGkUZ/C3o0SiTHJEiAyZVk531tZxL97OMHkr72iCOS5l8+8gYaMNyVxYnaKD6TV6103iTBysZzycAazGK2WPPThDdcXiE5P/epe/35zazXAHTqjoXL9xrfmK3p1o4a8iEP2SRdGnlDhKzA2nva4ERhcEyhueWKH58vSqmpehx/hUseFasyVA7e+p/znPhEhwpDINQUngSySXIHMn7sWAQaGAp+oArV9YU/YIREpzSGZgBYmqq2LKFAhSDlNjstgkM1RvO2W7w1D4qCgrdMjnBIBKXmRu4TfmSaXVQ== root@192.168.1.17
+[root@192 student]# 
+
+______________________________________________________________________________--
+21. **Transfer the archived file** (e.g., `archive.tar.gz`) 
+to the remote server using ssh copy way (don’t copy/paste >>> you have to search)
+
+
+root@192 student]# scp archive.tar.gz user@192.168.1.100:/home/user/
+
+root@192 student]# ls -lh /home/user/archive.tar.gz
+
+root@192 student]# rsync -av archive.tar.gz user@192.168.1.100:/home/user/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
